@@ -2,9 +2,9 @@ import { motion } from "framer-motion";
 
 const skills = [
   { name: "Flutter", level: 90 },
-  { name: "Dart", level: 85 },
-  { name: "Firebase", level: 80 },
-  { name: "UI/UX Design", level: 75 },
+  { name: "Dart", level: 90 },
+  { name: "Firebase", level: 99 },
+  { name: "UI/UX Design", level: 80 },
   { name: "State Management", level: 85 },
   { name: "REST APIs", level: 80 },
 ];
