@@ -13,7 +13,12 @@ const projects = [
   {
     title: "Chatter - Messaging App",
     description: "A feature-rich messaging application built with Flutter, offering real-time chat, group messaging, and comprehensive user management.",
-    image: "/placeholder.svg",
+    screenshots: [
+      "https://raw.githubusercontent.com/muzzammil763/Chatter/master/screenshots/screenshot1.png",
+      "https://raw.githubusercontent.com/muzzammil763/Chatter/master/screenshots/screenshot2.png",
+      "https://raw.githubusercontent.com/muzzammil763/Chatter/master/screenshots/screenshot3.png",
+      // Add more screenshots as needed
+    ],
     tags: [
       "Flutter",
       "Firebase",
@@ -147,10 +152,14 @@ export const Projects = () => {
                 <div className="space-y-4">
                   <Carousel className="w-full">
                     <CarouselContent>
-                      {[1, 2, 3].map((_, index) => (
+                      {project.screenshots.map((screenshot, index) => (
                         <CarouselItem key={index}>
-                          <div className="aspect-[9/16] bg-accent/20 rounded-lg flex items-center justify-center">
-                            <Smartphone className="w-12 h-12 text-primary/50" />
+                          <div className="aspect-[9/16] rounded-lg overflow-hidden">
+                            <img 
+                              src={screenshot} 
+                              alt={`Chatter App Screenshot ${index + 1}`}
+                              className="w-full h-full object-cover"
+                            />
                           </div>
                         </CarouselItem>
                       ))}
@@ -159,7 +168,7 @@ export const Projects = () => {
                     <CarouselNext />
                   </Carousel>
                   <p className="text-center text-sm text-secondary/60">
-                    App screenshots coming soon
+                    Swipe to see more screenshots
                   </p>
                 </div>
               </div>
