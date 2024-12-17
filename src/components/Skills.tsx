@@ -1,13 +1,22 @@
 import { motion } from "framer-motion";
+import { 
+  SiFlutter, 
+  SiDart, 
+  SiFirebase, 
+  SiRedux, 
+  SiHtml5, 
+  SiCss3, 
+  SiJavascript, 
+} from "react-icons/si";
 
 const skills = [
-  { name: "Flutter", level: 90 },
-  { name: "Dart", level: 90 },
-  { name: "Firebase", level: 99 },
-  { name: "UI/UX Design", level: 80 },
-  { name: "State Management", level: 85 },
-  { name: "REST APIs", level: 75 }, 
-   { name: "FlutterFlow", level: 70 },
+  { name: "Flutter", icon: SiFlutter },
+  { name: "Dart", icon: SiDart },
+  { name: "Firebase", icon: SiFirebase },
+  { name: "State Management", icon: SiRedux },
+  { name: "HTML", icon: SiHtml5 },
+  { name: "CSS", icon: SiCss3 },
+  { name: "JavaScript", icon: SiJavascript },
 ];
 
 export const Skills = () => {
@@ -20,29 +29,18 @@ export const Skills = () => {
             Technologies & Tools I Work With
           </p>
         </div>
-        <div className="space-y-6">
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-6">
           {skills.map((skill, index) => (
             <motion.div
               key={index}
-              initial={{ opacity: 0, x: -20 }}
-              whileInView={{ opacity: 1, x: 0 }}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
               viewport={{ once: true }}
-              className="border border-black/10 dark:border-white/10 bg-white dark:bg-black backdrop-blur-sm rounded-xl p-4 hover:border-black/20 dark:hover:border-white/20 transition-colors"
+              className="flex flex-col items-center gap-3 p-4 rounded-xl border border-black/10 dark:border-white/10 hover:border-black/20 dark:hover:border-white/20 transition-colors"
             >
-              <div className="flex justify-between items-center mb-2">
-                <span className="font-medium">{skill.name}</span>
-                <span className="text-sm text-black/60 dark:text-white/60">{skill.level}%</span>
-              </div>
-              <div className="h-2 bg-black/10 dark:bg-white/10 rounded-full overflow-hidden">
-                <motion.div
-                  initial={{ width: 0 }}
-                  whileInView={{ width: `${skill.level}%` }}
-                  transition={{ duration: 1, ease: "easeOut" }}
-                  viewport={{ once: true }}
-                  className="h-full bg-black dark:bg-white rounded-full"
-                />
-              </div>
+              <skill.icon className="w-10 h-10" />
+              <span className="font-medium text-center">{skill.name}</span>
             </motion.div>
           ))}
         </div>
