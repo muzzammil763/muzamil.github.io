@@ -159,10 +159,6 @@ export const Projects = () => {
                         </CarouselItem>
                       ))}
                     </CarouselContent>
-                    <div className="absolute -right-12 top-1/2 -translate-y-1/2 flex flex-col gap-4">
-                      <CarouselPrevious className="relative -translate-y-1/2" />
-                      <CarouselNext className="relative translate-y-1/2" />
-                    </div>
                   </Carousel>
                   <p className="text-center text-sm text-secondary/60">
                     Swipe to see more screenshots
