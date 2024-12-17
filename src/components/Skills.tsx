@@ -11,7 +11,7 @@ const skills = [
 
 export const Skills = () => {
   return (
-    <section className="py-20 px-4 bg-black/15">
+    <section className="py-20 px-4 bg-white">
       <div className="max-w-4xl mx-auto">
         <div className="text-center mb-16">
           <h2 className="text-4xl font-display font-bold mb-4">Skills</h2>
@@ -27,7 +27,7 @@ export const Skills = () => {
               whileInView={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
               viewport={{ once: true }}
-              className="border border-black/10 bg-white/50 backdrop-blur-sm rounded-xl p-4 hover:border-black/20 transition-colors"
+              className="border border-black/10 bg-white backdrop-blur-sm rounded-xl p-4 hover:border-black/20 transition-colors"
             >
               <div className="flex justify-between items-center mb-2">
                 <span className="font-medium">{skill.name}</span>

@@ -123,14 +123,14 @@ export const Projects = () => {
                     {project.tags.map((tag) => (
                       <span
                         key={tag}
-                        className="px-3 py-1 text-sm rounded-full bg-black/15 hover:bg-black hover:text-white transition-colors"
+                        className="px-3 py-1 text-sm rounded-full bg-black/10 hover:bg-black hover:text-white transition-colors"
                       >
                         {tag}
                       </span>
                     ))}
                   </div>
 
-                  <div className="flex gap-4 pt-4">
+                  <div className="flex justify-center gap-4 pt-4">
                     <Button
                       variant="default"
                       className="flex items-center gap-2 bg-black text-white hover:bg-black/90 transition-colors"
@@ -145,22 +145,24 @@ export const Projects = () => {
                 </div>
 
                 <div className="space-y-4">
-                  <Carousel className="w-full">
+                  <Carousel className="w-full relative group">
                     <CarouselContent>
                       {project.screenshots.map((screenshot, index) => (
                         <CarouselItem key={index}>
-                          <div className="aspect-[9/16] rounded-lg overflow-hidden">
+                          <div className="aspect-[1080/2221] rounded-lg overflow-hidden">
                             <img 
                               src={screenshot} 
                               alt={`Chatter App Screenshot ${index + 1}`}
-                              className="w-full h-full object-cover"
+                              className="w-full h-full object-contain"
                             />
                           </div>
                         </CarouselItem>
                       ))}
                     </CarouselContent>
-                    <CarouselPrevious />
-                    <CarouselNext />
+                    <div className="absolute -right-12 top-1/2 -translate-y-1/2 flex flex-col gap-4">
+                      <CarouselPrevious className="relative -translate-y-1/2" />
+                      <CarouselNext className="relative translate-y-1/2" />
+                    </div>
                   </Carousel>
                   <p className="text-center text-sm text-secondary/60">
                     Swipe to see more screenshots
