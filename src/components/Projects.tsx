@@ -81,19 +81,19 @@ export const Projects = () => {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5 }}
               viewport={{ once: true }}
-              className="glass-card rounded-2xl overflow-hidden hover-card"
+              className="glass-card rounded-2xl overflow-hidden bg-black/5 dark:bg-white/5 hover:bg-black/10 dark:hover:bg-white/10 transition-colors"
             >
               <div className="grid md:grid-cols-2 gap-6 p-6">
                 <div className="space-y-4">
-                  <h3 className="text-2xl font-display font-semibold">
+                  <h3 className="text-2xl font-display font-semibold text-black dark:text-white">
                     {project.title}
                   </h3>
-                  <p className="text-secondary/80">{project.description}</p>
+                  <p className="text-black/60 dark:text-white/60">{project.description}</p>
                   
                   <div className="space-y-4">
                     <div>
-                      <h4 className="font-semibold mb-2">Authentication:</h4>
-                      <ul className="list-disc list-inside space-y-1 text-secondary/80">
+                      <h4 className="font-semibold mb-2 text-black dark:text-white">Authentication:</h4>
+                      <ul className="list-disc list-inside space-y-1 text-black/60 dark:text-white/60">
                         {project.detailedFeatures.auth.map((feature, i) => (
                           <li key={i}>{feature}</li>
                         ))}
@@ -101,8 +101,8 @@ export const Projects = () => {
                     </div>
                     
                     <div>
-                      <h4 className="font-semibold mb-2">Chat Features:</h4>
-                      <ul className="list-disc list-inside space-y-1 text-secondary/80">
+                      <h4 className="font-semibold mb-2 text-black dark:text-white">Chat Features:</h4>
+                      <ul className="list-disc list-inside space-y-1 text-black/60 dark:text-white/60">
                         {project.detailedFeatures.chat.map((feature, i) => (
                           <li key={i}>{feature}</li>
                         ))}
@@ -110,8 +110,8 @@ export const Projects = () => {
                     </div>
                     
                     <div>
-                      <h4 className="font-semibold mb-2">Admin Features:</h4>
-                      <ul className="list-disc list-inside space-y-1 text-secondary/80">
+                      <h4 className="font-semibold mb-2 text-black dark:text-white">Admin Features:</h4>
+                      <ul className="list-disc list-inside space-y-1 text-black/60 dark:text-white/60">
                         {project.detailedFeatures.admin.map((feature, i) => (
                           <li key={i}>{feature}</li>
                         ))}
