@@ -6,14 +6,23 @@ import {
   SiRedux, 
   SiHtml5, 
   SiCss3, 
-  SiJavascript, 
+  SiJavascript,
+  SiReact,
+  SiSupabase,
+  SiPostman,
+  SiGit
 } from "react-icons/si";
+import { TbBrandFlutter } from "react-icons/tb";
 
 const skills = [
-  { name: "Flutter", icon: SiFlutter },
+  { name: "Flutter", icon: TbBrandFlutter },
   { name: "Dart", icon: SiDart },
   { name: "Firebase", icon: SiFirebase },
   { name: "State Management", icon: SiRedux },
+  { name: "React", icon: SiReact },
+  { name: "Supabase", icon: SiSupabase },
+  { name: "REST APIs", icon: SiPostman },
+  { name: "Git", icon: SiGit },
   { name: "HTML", icon: SiHtml5 },
   { name: "CSS", icon: SiCss3 },
   { name: "JavaScript", icon: SiJavascript },

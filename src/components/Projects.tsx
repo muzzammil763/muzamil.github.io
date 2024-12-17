@@ -19,11 +19,10 @@ const projects = [
     tags: [
       "Firebase",
       "Firebase Auth",
+      "Animations",
       "Firebase Analytics",
       "Riverpod",
       "Push Notifications",
-      "Avatars with Flutter",
-      "Animations with Flutter",
       "Flutter & Dart",
     ],
     features: [
@@ -78,43 +77,13 @@ export const Projects = () => {
       setCurrent(api.selectedScrollSnap());
     });
 
-    // Auto-swipe every 5 seconds when tab is visible
-    let autoSwipeInterval: NodeJS.Timeout;
-
-    const startAutoSwipe = () => {
-      autoSwipeInterval = setInterval(() => {
-        if (document.visibilityState === 'visible') {
-          api.scrollNext();
-        }
-      }, 5000);
-    };
-
-    const stopAutoSwipe = () => {
-      clearInterval(autoSwipeInterval);
-    };
-
-    // Start auto-swipe
-    startAutoSwipe();
-
-    // Handle visibility change
-    document.addEventListener('visibilitychange', () => {
-      if (document.visibilityState === 'visible') {
-        startAutoSwipe();
-      } else {
-        stopAutoSwipe();
-      }
-    });
-
-    return () => {
-      stopAutoSwipe();
-      document.removeEventListener('visibilitychange', () => {});
-    };
+    return () => {};
   }, [api]);
 
   return (
-    <section className="py-20 px-4">
+    <section className="py-12 px-4">
       <div className="max-w-6xl mx-auto">
-        <div className="text-center mb-16">
+        <div className="text-center mb-12">
           <h2 className="text-4xl font-display font-bold mb-4">Featured Projects</h2>
           <p className="text-black/60 dark:text-white/60 max-w-2xl mx-auto">
             Showcasing My Expertise In Mobile App Development With Flutter
@@ -202,7 +171,7 @@ export const Projects = () => {
                           <div className="aspect-[1080/2221] rounded-lg overflow-hidden md:max-w-[80%] md:mx-auto">
                             <img
                               src={screenshot}
-                              alt={`Chatter App Screenshot ${index + 1}`}
+                              alt={`${project.title} App Screenshot ${index + 1}`}
                               className="w-full h-full object-contain"
                             />
                           </div>
@@ -211,7 +180,9 @@ export const Projects = () => {
                     </CarouselContent>
                     <CarouselPrevious className="hidden md:flex" />
                     <CarouselNext className="hidden md:flex" />
-                    <div className="absolute bottom-4 left-0 right-0 flex justify-center gap-2">
+                  </Carousel>
+                  <div className="flex flex-col items-center space-y-2">
+                    <div className="flex justify-center gap-2">
                       {project.screenshots.map((_, index) => (
                         <button
                           key={index}
@@ -221,14 +192,14 @@ export const Projects = () => {
                               ? "bg-white"
                               : "bg-white/40"
                           }`}
-                          aria-label={`Go to screenshot ${index + 1}`}
+                          aria-label={`Go to Screenshot ${index + 1}`}
                         />
                       ))}
                     </div>
-                  </Carousel>
-                  <p className="text-center text-sm text-black/60 dark:text-white/60">
-                    Swipe or use dots to navigate screenshots
-                  </p>
+                    <p className="text-center text-sm text-black/60 dark:text-white/60">
+                      Swipe Or Use Dots To Navigate Screenshots
+                    </p>
+                  </div>
                 </div>
               </div>
             </motion.div>
