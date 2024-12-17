@@ -11,7 +11,7 @@ const skills = [
 
 export const Skills = () => {
   return (
-    <section className="py-20 px-4 bg-accent/20">
+    <section className="py-20 px-4 bg-black/15">
       <div className="max-w-4xl mx-auto">
         <div className="text-center mb-16">
           <h2 className="text-4xl font-display font-bold mb-4">Skills</h2>
@@ -27,19 +27,19 @@ export const Skills = () => {
               whileInView={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
               viewport={{ once: true }}
-              className="glass-card rounded-xl p-4"
+              className="border border-black/10 bg-white/50 backdrop-blur-sm rounded-xl p-4 hover:border-black/20 transition-colors"
             >
               <div className="flex justify-between items-center mb-2">
                 <span className="font-medium">{skill.name}</span>
                 <span className="text-sm text-secondary/60">{skill.level}%</span>
               </div>
-              <div className="h-2 bg-accent/30 rounded-full overflow-hidden">
+              <div className="h-2 bg-black/10 rounded-full overflow-hidden">
                 <motion.div
                   initial={{ width: 0 }}
                   whileInView={{ width: `${skill.level}%` }}
                   transition={{ duration: 1, ease: "easeOut" }}
                   viewport={{ once: true }}
-                  className="h-full bg-primary rounded-full"
+                  className="h-full bg-black rounded-full"
                 />
               </div>
             </motion.div>
