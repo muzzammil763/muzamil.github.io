@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { Github, Smartphone } from "lucide-react";
+import { Github } from "lucide-react";
 import { Button } from "./ui/button";
 import {
   Carousel,
@@ -13,12 +13,7 @@ const projects = [
   {
     title: "Chatter - Messaging App",
     description: "A feature-rich messaging application built with Flutter, offering real-time chat, group messaging, and comprehensive user management.",
-    screenshots: [
-      "https://raw.githubusercontent.com/muzzammil763/Chatter/master/screenshots/screenshot1.png",
-      "https://raw.githubusercontent.com/muzzammil763/Chatter/master/screenshots/screenshot2.png",
-      "https://raw.githubusercontent.com/muzzammil763/Chatter/master/screenshots/screenshot3.png",
-      // Add more screenshots as needed
-    ],
+    screenshots: Array.from({ length: 15 }, (_, i) => `/screenshots/screenshot${i + 1}.jpg`),
     tags: [
       "Flutter",
       "Firebase",
