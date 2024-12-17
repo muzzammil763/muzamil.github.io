@@ -60,7 +60,7 @@ const projects = [
       "firebase_messaging: ^15.1.5",
       "flutter_local_notifications: ^18.0.1",
     ],
-  }
+  },
 ];
 
 export const Projects = () => {
@@ -123,7 +123,7 @@ export const Projects = () => {
                     {project.tags.map((tag) => (
                       <span
                         key={tag}
-                        className="px-3 py-1 text-sm rounded-full bg-accent/50"
+                        className="px-3 py-1 text-sm rounded-full bg-black/15 hover:bg-black hover:text-white transition-colors"
                       >
                         {tag}
                       </span>
@@ -133,7 +133,7 @@ export const Projects = () => {
                   <div className="flex gap-4 pt-4">
                     <Button
                       variant="default"
-                      className="flex items-center gap-2"
+                      className="flex items-center gap-2 bg-black text-white hover:bg-black/90 transition-colors"
                       asChild
                     >
                       <a href={project.link} target="_blank" rel="noopener noreferrer">
