@@ -7,7 +7,9 @@ import {
   CarouselItem,
   CarouselNext,
   CarouselPrevious,
+  CarouselApi,
 } from "./ui/carousel";
+import { useEffect, useState } from "react";
 
 const projects = [
   {
@@ -15,7 +17,6 @@ const projects = [
     description: "A Feature-Rich Messaging Application Built With Flutter, Offering Real-Time Chat, Group Messaging & Comprehensive User Management.",
     screenshots: Array.from({ length: 15 }, (_, i) => `/screenshots/screenshot${i + 1}.jpg`),
     tags: [
-      
       "Firebase",
       "Firebase Auth",
       "Firebase Analytics",
@@ -67,13 +68,56 @@ const projects = [
 ];
 
 export const Projects = () => {
+  const [api, setApi] = useState<CarouselApi>();
+  const [current, setCurrent] = useState(0);
+
+  useEffect(() => {
+    if (!api) return;
+
+    api.on("select", () => {
+      setCurrent(api.selectedScrollSnap());
+    });
+
+    // Auto-swipe every 5 seconds when tab is visible
+    let autoSwipeInterval: NodeJS.Timeout;
+
+    const startAutoSwipe = () => {
+      autoSwipeInterval = setInterval(() => {
+        if (document.visibilityState === 'visible') {
+          api.scrollNext();
+        }
+      }, 5000);
+    };
+
+    const stopAutoSwipe = () => {
+      clearInterval(autoSwipeInterval);
+    };
+
+    // Start auto-swipe
+    startAutoSwipe();
+
+    // Handle visibility change
+    document.addEventListener('visibilitychange', () => {
+      if (document.visibilityState === 'visible') {
+        startAutoSwipe();
+      } else {
+        stopAutoSwipe();
+      }
+    });
+
+    return () => {
+      stopAutoSwipe();
+      document.removeEventListener('visibilitychange', () => {});
+    };
+  }, [api]);
+
   return (
     <section className="py-20 px-4">
       <div className="max-w-6xl mx-auto">
         <div className="text-center mb-16">
           <h2 className="text-4xl font-display font-bold mb-4">Featured Projects</h2>
           <p className="text-black/60 dark:text-white/60 max-w-2xl mx-auto">
-            Showcasing my expertise in mobile app development with Flutter
+            Showcasing My Expertise In Mobile App Development With Flutter
           </p>
         </div>
         <div className="grid grid-cols-1 gap-8">
@@ -92,7 +136,7 @@ export const Projects = () => {
                     {project.title}
                   </h3>
                   <p className="text-black/60 dark:text-white/60">{project.description}</p>
-                  
+
                   <div className="space-y-4">
                     <div>
                       <h4 className="font-semibold mb-2 text-black dark:text-white">Authentication:</h4>
@@ -102,7 +146,7 @@ export const Projects = () => {
                         ))}
                       </ul>
                     </div>
-                    
+
                     <div>
                       <h4 className="font-semibold mb-2 text-black dark:text-white">Chat Features:</h4>
                       <ul className="list-disc list-inside space-y-1 text-black/60 dark:text-white/60">
@@ -111,7 +155,7 @@ export const Projects = () => {
                         ))}
                       </ul>
                     </div>
-                    
+
                     <div>
                       <h4 className="font-semibold mb-2 text-black dark:text-white">Admin Features:</h4>
                       <ul className="list-disc list-inside space-y-1 text-black/60 dark:text-white/60">
@@ -148,13 +192,16 @@ export const Projects = () => {
                 </div>
 
                 <div className="space-y-4">
-                  <Carousel className="w-full relative group">
+                  <Carousel
+                    className="w-full relative group"
+                    setApi={setApi}
+                  >
                     <CarouselContent>
                       {project.screenshots.map((screenshot, index) => (
                         <CarouselItem key={index}>
-                          <div className="aspect-[1080/2221] rounded-lg overflow-hidden">
-                            <img 
-                              src={screenshot} 
+                          <div className="aspect-[1080/2221] rounded-lg overflow-hidden md:max-w-[80%] md:mx-auto">
+                            <img
+                              src={screenshot}
                               alt={`Chatter App Screenshot ${index + 1}`}
                               className="w-full h-full object-contain"
                             />
@@ -162,9 +209,25 @@ export const Projects = () => {
                         </CarouselItem>
                       ))}
                     </CarouselContent>
+                    <CarouselPrevious className="hidden md:flex" />
+                    <CarouselNext className="hidden md:flex" />
+                    <div className="absolute bottom-4 left-0 right-0 flex justify-center gap-2">
+                      {project.screenshots.map((_, index) => (
+                        <button
+                          key={index}
+                          onClick={() => api?.scrollTo(index)}
+                          className={`w-2 h-2 rounded-full transition-colors ${
+                            current === index
+                              ? "bg-white"
+                              : "bg-white/40"
+                          }`}
+                          aria-label={`Go to screenshot ${index + 1}`}
+                        />
+                      ))}
+                    </div>
                   </Carousel>
                   <p className="text-center text-sm text-black/60 dark:text-white/60">
-                    Swipe to see more screenshots
+                    Swipe or use dots to navigate screenshots
                   </p>
                 </div>
               </div>
