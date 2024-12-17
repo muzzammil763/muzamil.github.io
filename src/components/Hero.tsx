@@ -9,11 +9,11 @@ export const Hero = () => {
             Flutter Developer
           </div>
           <h1 className="text-5xl md:text-7xl font-display font-bold leading-tight">
-            Building beautiful mobile experiences
+            Building Beautiful Mobile Experiences
           </h1>
           <p className="text-lg md:text-xl text-black/60 dark:text-white/60 max-w-2xl mx-auto">
-            I craft elegant and performant mobile applications using Flutter and Dart,
-            with 2 years of professional experience and expertise in FlutterFlow.
+            I Craft Elegant & Performant Mobile Applications Using Flutter & Dart,
+            With Almost 2 Years of Professional Experience
           </p>
           <div className="flex items-center justify-center gap-4 pt-4">
             <a

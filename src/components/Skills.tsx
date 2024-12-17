@@ -6,7 +6,8 @@ const skills = [
   { name: "Firebase", level: 99 },
   { name: "UI/UX Design", level: 80 },
   { name: "State Management", level: 85 },
-  { name: "REST APIs", level: 80 },
+  { name: "REST APIs", level: 75 }, 
+   { name: "FlutterFlow", level: 70 },
 ];
 
 export const Skills = () => {
@@ -16,7 +17,7 @@ export const Skills = () => {
         <div className="text-center mb-16">
           <h2 className="text-4xl font-display font-bold mb-4">Skills</h2>
           <p className="text-black/60 dark:text-white/60 max-w-2xl mx-auto">
-            Technologies and tools I work with
+            Technologies & Tools I Work With
           </p>
         </div>
         <div className="space-y-6">
