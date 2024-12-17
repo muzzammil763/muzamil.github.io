@@ -69,7 +69,7 @@ export const Projects = () => {
       <div className="max-w-6xl mx-auto">
         <div className="text-center mb-16">
           <h2 className="text-4xl font-display font-bold mb-4">Featured Projects</h2>
-          <p className="text-secondary/80 max-w-2xl mx-auto">
+          <p className="text-black/60 dark:text-white/60 max-w-2xl mx-auto">
             Showcasing my expertise in mobile app development with Flutter
           </p>
         </div>
@@ -123,7 +123,7 @@ export const Projects = () => {
                     {project.tags.map((tag) => (
                       <span
                         key={tag}
-                        className="px-3 py-1 text-sm rounded-full bg-black/10 hover:bg-black hover:text-white transition-colors"
+                        className="px-3 py-1 text-sm rounded-full bg-black/10 dark:bg-white/10 hover:bg-black hover:text-white dark:hover:bg-white dark:hover:text-black transition-colors"
                       >
                         {tag}
                       </span>
@@ -160,7 +160,7 @@ export const Projects = () => {
                       ))}
                     </CarouselContent>
                   </Carousel>
-                  <p className="text-center text-sm text-secondary/60">
+                  <p className="text-center text-sm text-black/60 dark:text-white/60">
                     Swipe to see more screenshots
                   </p>
                 </div>
