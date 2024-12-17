@@ -1,30 +1,65 @@
-import { useState } from "react";
 import { motion } from "framer-motion";
-import { Github, Smartphone, Image } from "lucide-react";
+import { Github, Smartphone } from "lucide-react";
 import { Button } from "./ui/button";
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from "./ui/carousel";
 
 const projects = [
   {
-    title: "Chatter - Social Media App",
-    description: "A feature-rich social media application built with Flutter, offering real-time messaging, story sharing, and seamless user interactions.",
-    image: "/placeholder.svg", // Using placeholder until we have actual app screenshots
+    title: "Chatter - Messaging App",
+    description: "A feature-rich messaging application built with Flutter, offering real-time chat, group messaging, and comprehensive user management.",
+    image: "/placeholder.svg",
     tags: [
       "Flutter",
       "Firebase",
-      "Provider",
+      "Riverpod",
       "Cloud Firestore",
-      "Firebase Storage",
       "Firebase Auth",
+      "Firebase Analytics",
     ],
     features: [
-      "Real-time chat functionality",
-      "Story sharing feature",
-      "Post creation and sharing",
-      "User authentication",
-      "Profile customization",
-      "Dark/Light theme",
+      "Authentication with email and Google sign-in",
+      "Real-time messaging with read receipts",
+      "Group chat functionality",
+      "User profiles with follow system",
+      "Admin panel with analytics",
+      "Automated updates system",
     ],
+    detailedFeatures: {
+      auth: [
+        "Email signup/login with password recovery",
+        "Google authentication",
+        "Account binding with Google",
+      ],
+      chat: [
+        "Real-time messaging with animations",
+        "Message read indicators",
+        "User online status",
+        "Last message preview",
+        "Unread message indicators",
+      ],
+      admin: [
+        "User management dashboard",
+        "Analytics and statistics",
+        "Push notification system",
+        "Update management",
+        "Developer mode with API viewing",
+      ],
+    },
     link: "https://github.com/muzzammil763/Chatter",
+    packages: [
+      "firebase_core: ^3.8.0",
+      "firebase_auth: ^5.3.3",
+      "firebase_database: ^11.1.6",
+      "riverpod: latest",
+      "firebase_messaging: ^15.1.5",
+      "flutter_local_notifications: ^18.0.1",
+    ],
   }
 ];
 
@@ -55,13 +90,33 @@ export const Projects = () => {
                   </h3>
                   <p className="text-secondary/80">{project.description}</p>
                   
-                  <div className="space-y-2">
-                    <h4 className="font-semibold">Key Features:</h4>
-                    <ul className="list-disc list-inside space-y-1 text-secondary/80">
-                      {project.features.map((feature, i) => (
-                        <li key={i}>{feature}</li>
-                      ))}
-                    </ul>
+                  <div className="space-y-4">
+                    <div>
+                      <h4 className="font-semibold mb-2">Authentication:</h4>
+                      <ul className="list-disc list-inside space-y-1 text-secondary/80">
+                        {project.detailedFeatures.auth.map((feature, i) => (
+                          <li key={i}>{feature}</li>
+                        ))}
+                      </ul>
+                    </div>
+                    
+                    <div>
+                      <h4 className="font-semibold mb-2">Chat Features:</h4>
+                      <ul className="list-disc list-inside space-y-1 text-secondary/80">
+                        {project.detailedFeatures.chat.map((feature, i) => (
+                          <li key={i}>{feature}</li>
+                        ))}
+                      </ul>
+                    </div>
+                    
+                    <div>
+                      <h4 className="font-semibold mb-2">Admin Features:</h4>
+                      <ul className="list-disc list-inside space-y-1 text-secondary/80">
+                        {project.detailedFeatures.admin.map((feature, i) => (
+                          <li key={i}>{feature}</li>
+                        ))}
+                      </ul>
+                    </div>
                   </div>
 
                   <div className="flex flex-wrap gap-2">
@@ -90,9 +145,19 @@ export const Projects = () => {
                 </div>
 
                 <div className="space-y-4">
-                  <div className="aspect-[9/16] bg-accent/20 rounded-lg flex items-center justify-center">
-                    <Smartphone className="w-12 h-12 text-primary/50" />
-                  </div>
+                  <Carousel className="w-full">
+                    <CarouselContent>
+                      {[1, 2, 3].map((_, index) => (
+                        <CarouselItem key={index}>
+                          <div className="aspect-[9/16] bg-accent/20 rounded-lg flex items-center justify-center">
+                            <Smartphone className="w-12 h-12 text-primary/50" />
+                          </div>
+                        </CarouselItem>
+                      ))}
+                    </CarouselContent>
+                    <CarouselPrevious />
+                    <CarouselNext />
+                  </Carousel>
                   <p className="text-center text-sm text-secondary/60">
                     App screenshots coming soon
                   </p>
