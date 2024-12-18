@@ -54,7 +54,7 @@ export const Skills = () => {
           viewport={{ once: true }}
           className="text-center mb-16"
         >
-          <h2 className="text-5xl font-display font-bold mb-4 text-[#0c4af3] dark:text-[#4c7af9]">
+          <h2 className="text-6xl font-display font-bold mb-4 text-[#0c4af3] dark:text-[#4c7af9]">
             Skills
           </h2>
           <p className="text-black/60 dark:text-white/60 max-w-2xl mx-auto text-lg">
@@ -77,9 +77,9 @@ export const Skills = () => {
                 scale: 1.05,
                 boxShadow: "0 10px 30px -15px rgba(0,0,0,0.2)"
               }}
-              className="flex flex-col items-center gap-3 p-6 rounded-xl border border-black/10 dark:border-white/10 hover:border-primary/50 dark:hover:border-primary/50 transition-colors bg-white/50 dark:bg-black/50 backdrop-blur-sm"
+              className="flex flex-col items-center gap-3 p-6 rounded-xl border border-black/10 dark:border-white/10 hover:border-[#0c4af3]/50 dark:hover:border-[#4c7af9]/50 transition-colors bg-white/50 dark:bg-black/50 backdrop-blur-sm"
             >
-              <skill.icon className="w-12 h-12 text-primary" />
+              <skill.icon className="w-12 h-12 text-[#0c4af3] dark:text-[#4c7af9]" />
               <span className="font-medium text-center">{skill.name}</span>
             </motion.div>
           ))}

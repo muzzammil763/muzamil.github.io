@@ -44,7 +44,7 @@ export const Hero = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.6 }}
-            className="flex items-center justify-center gap-4 pt-4"
+            className="flex items-center justify-center gap-4 pt-4 mb-8"
           >
             <motion.a
               whileHover={{ scale: 1.1 }}
@@ -70,7 +70,7 @@ export const Hero = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.7 }}
-            className="mt-8"
+            className="mb-12"
           >
             <AnimatedCode />
           </motion.div>
