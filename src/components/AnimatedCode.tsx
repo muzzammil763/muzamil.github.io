@@ -51,10 +51,10 @@ export const AnimatedCode = () => {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: -20 }}
-          className="w-full max-w-2xl mx-auto p-6 rounded-lg bg-black/90 backdrop-blur-sm shadow-xl overflow-hidden"
+          className="w-full max-w-full mx-auto p-4 md:p-6 rounded-lg bg-black/90 backdrop-blur-sm shadow-xl overflow-x-auto"
         >
-          <pre className="font-mono text-base md:text-lg text-left">
-            <code>
+          <pre className="font-mono text-sm md:text-base lg:text-lg text-left min-w-[300px] overflow-x-auto">
+            <code className="block whitespace-pre">
               {text.split('\n').map((line, i) => (
                 <div key={i} className="leading-relaxed">
                   {line.split(' ').map((word, j) => {
