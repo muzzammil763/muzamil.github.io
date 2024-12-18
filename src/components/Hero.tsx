@@ -16,15 +16,6 @@ export const Hero = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.3 }}
-            className="mb-8"
-          >
-            <AnimatedCode />
-          </motion.div>
-
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.3 }}
             className="inline-block px-6 py-2 rounded-full bg-black/10 dark:bg-white/10 text-lg md:text-xl font-semibold mb-4 hover:bg-black hover:text-white dark:hover:bg-white dark:hover:text-black transition-colors"
           >
             Flutter Developer
@@ -34,7 +25,7 @@ export const Hero = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.4 }}
-            className="text-5xl md:text-7xl font-display font-bold leading-tight"
+            className="text-5xl md:text-7xl font-display font-bold leading-tight text-[#0c4af3] dark:text-[#4c7af9]"
           >
             Building Beautiful Mobile Experiences
           </motion.h1>
@@ -73,6 +64,15 @@ export const Hero = () => {
             >
               <Mail className="w-6 h-6" />
             </motion.a>
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.7 }}
+            className="mt-8"
+          >
+            <AnimatedCode />
           </motion.div>
         </motion.div>
       </div>

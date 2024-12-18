@@ -54,13 +54,14 @@ export const Skills = () => {
           viewport={{ once: true }}
           className="text-center mb-16"
         >
-          <h2 className="text-4xl font-display font-bold mb-4 bg-gradient-to-r from-primary to-purple-600 text-transparent bg-clip-text">
+          <h2 className="text-5xl font-display font-bold mb-4 text-[#0c4af3] dark:text-[#4c7af9]">
             Skills
           </h2>
-          <p className="text-black/60 dark:text-white/60 max-w-2xl mx-auto">
+          <p className="text-black/60 dark:text-white/60 max-w-2xl mx-auto text-lg">
             Technologies & Tools I Work With
           </p>
         </motion.div>
+        
         <motion.div
           variants={container}
           initial="hidden"

@@ -51,24 +51,25 @@ export const AnimatedCode = () => {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: -20 }}
-          className="w-full max-w-xl mx-auto p-4 rounded-lg bg-black/90 backdrop-blur-sm shadow-xl overflow-hidden"
+          className="w-full max-w-2xl mx-auto p-6 rounded-lg bg-black/90 backdrop-blur-sm shadow-xl overflow-hidden"
         >
-          <pre className="font-mono text-sm md:text-base whitespace-pre-wrap break-words">
+          <pre className="font-mono text-base md:text-lg text-left">
             <code>
               {text.split('\n').map((line, i) => (
                 <div key={i} className="leading-relaxed">
                   {line.split(' ').map((word, j) => {
                     let className = "text-white/80";
-                    if (word.includes("class")) className = "text-[#54C5F8]";
-                    if (word.includes("extends")) className = "text-[#54C5F8]";
-                    if (word.includes("@override")) className = "text-[#54C5F8]";
-                    if (word.includes("return")) className = "text-[#54C5F8]";
-                    if (word.includes("MaterialApp")) className = "text-[#54C5F8]";
-                    if (word.includes("Scaffold")) className = "text-[#54C5F8]";
-                    if (word.includes("Center")) className = "text-[#54C5F8]";
-                    if (word.includes("Text")) className = "text-[#54C5F8]";
-                    if (word.includes("Widget")) className = "text-[#54C5F8]";
-                    if (word.includes("'")) className = "text-[#A5D6A7]";
+                    if (word.includes("//")) className = "text-[#6A9955] pl-0"; // Comments
+                    else if (word.includes("class")) className = "text-[#569CD6]";
+                    else if (word.includes("extends")) className = "text-[#569CD6]";
+                    else if (word.includes("@override")) className = "text-[#569CD6]";
+                    else if (word.includes("return")) className = "text-[#C586C0]";
+                    else if (word.includes("MaterialApp")) className = "text-[#4EC9B0]";
+                    else if (word.includes("Scaffold")) className = "text-[#4EC9B0]";
+                    else if (word.includes("Center")) className = "text-[#4EC9B0]";
+                    else if (word.includes("Text")) className = "text-[#4EC9B0]";
+                    else if (word.includes("Widget")) className = "text-[#4EC9B0]";
+                    else if (word.includes("'")) className = "text-[#CE9178]";
                     
                     return (
                       <span key={j} className={className + " mr-2"}>

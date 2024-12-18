@@ -84,8 +84,10 @@ export const Projects = () => {
     <section className="py-12 px-4">
       <div className="max-w-6xl mx-auto">
         <div className="text-center mb-12">
-          <h2 className="text-4xl font-display font-bold mb-4">Featured Projects</h2>
-          <p className="text-black/60 dark:text-white/60 max-w-2xl mx-auto">
+          <h2 className="text-5xl font-display font-bold mb-4 text-[#0c4af3] dark:text-[#4c7af9]">
+            Featured Projects
+          </h2>
+          <p className="text-black/60 dark:text-white/60 max-w-2xl mx-auto text-lg">
             Showcasing My Expertise In Mobile App Development With Flutter
           </p>
         </div>
