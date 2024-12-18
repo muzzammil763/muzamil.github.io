@@ -28,31 +28,61 @@ const skills = [
   { name: "JavaScript", icon: SiJavascript },
 ];
 
+const container = {
+  hidden: { opacity: 0 },
+  show: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.1
+    }
+  }
+};
+
+const item = {
+  hidden: { opacity: 0, y: 20 },
+  show: { opacity: 1, y: 0 }
+};
+
 export const Skills = () => {
   return (
     <section className="py-20 px-4 bg-white dark:bg-black">
       <div className="max-w-4xl mx-auto">
-        <div className="text-center mb-16">
-          <h2 className="text-4xl font-display font-bold mb-4">Skills</h2>
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+          viewport={{ once: true }}
+          className="text-center mb-16"
+        >
+          <h2 className="text-4xl font-display font-bold mb-4 bg-gradient-to-r from-primary to-purple-600 text-transparent bg-clip-text">
+            Skills
+          </h2>
           <p className="text-black/60 dark:text-white/60 max-w-2xl mx-auto">
             Technologies & Tools I Work With
           </p>
-        </div>
-        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-6">
+        </motion.div>
+        <motion.div
+          variants={container}
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true }}
+          className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-6"
+        >
           {skills.map((skill, index) => (
             <motion.div
               key={index}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
-              viewport={{ once: true }}
-              className="flex flex-col items-center gap-3 p-4 rounded-xl border border-black/10 dark:border-white/10 hover:border-black/20 dark:hover:border-white/20 transition-colors"
+              variants={item}
+              whileHover={{ 
+                scale: 1.05,
+                boxShadow: "0 10px 30px -15px rgba(0,0,0,0.2)"
+              }}
+              className="flex flex-col items-center gap-3 p-6 rounded-xl border border-black/10 dark:border-white/10 hover:border-primary/50 dark:hover:border-primary/50 transition-colors bg-white/50 dark:bg-black/50 backdrop-blur-sm"
             >
-              <skill.icon className="w-10 h-10" />
+              <skill.icon className="w-12 h-12 text-primary" />
               <span className="font-medium text-center">{skill.name}</span>
             </motion.div>
           ))}
-        </div>
+        </motion.div>
       </div>
     </section>
   );
