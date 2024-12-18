@@ -1,6 +1,6 @@
 import { Github, Mail } from "lucide-react";
 import { motion } from "framer-motion";
-import { FlutterLogo3D } from "./3d/FlutterLogo3D";
+import { AnimatedCode } from "./AnimatedCode";
 
 export const Hero = () => {
   return (
@@ -13,12 +13,12 @@ export const Hero = () => {
           className="space-y-6"
         >
           <motion.div
-            initial={{ scale: 0 }}
-            animate={{ scale: 1 }}
-            transition={{ delay: 0.2, type: "spring", stiffness: 200 }}
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.3 }}
             className="mb-8"
           >
-            <FlutterLogo3D />
+            <AnimatedCode />
           </motion.div>
 
           <motion.div
@@ -34,7 +34,7 @@ export const Hero = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.4 }}
-            className="text-5xl md:text-7xl font-display font-bold leading-tight bg-gradient-to-r from-primary to-purple-600 text-transparent bg-clip-text"
+            className="text-5xl md:text-7xl font-display font-bold leading-tight"
           >
             Building Beautiful Mobile Experiences
           </motion.h1>
