@@ -3,18 +3,18 @@ import { Check } from "lucide-react";
 
 const packages = [
   {
-    name: "Normal",
+    name: "Basic",
     price: 170,
     features: [
       "5-6 App Screens",
       "Basic Functionality",
       "Bug Fixes",
-      "1 Week Delivery",
+      "2 Weeks Delivery or Less",
     ],
     notIncluded: ["Source Code", "App Icon"],
   },
   {
-    name: "Medium",
+    name: "Advanced",
     price: 300,
     features: [
       "10-12 App Screens",
@@ -22,7 +22,7 @@ const packages = [
       "Source Code Included",
       "App Icon Included",
       "Bug Fixes",
-      "2 Weeks Delivery",
+      "4 Weeks Delivery or Less",
     ],
   },
   {
@@ -36,7 +36,7 @@ const packages = [
       "App Icon Included",
       "Premium Support",
       "Bug Fixes",
-      "3-4 Weeks Delivery",
+      "7-8 Weeks Delivery",
     ],
   },
 ];
@@ -86,7 +86,7 @@ export const Pricing = () => {
             <motion.div
               key={index}
               variants={item}
-              className="relative p-8 rounded-xl border border-black/10 dark:border-white/10 hover:border-[#0c4af3]/50 dark:hover:border-[#4c7af9]/50 transition-colors bg-white/50 dark:bg-black/50 backdrop-blur-sm hover:shadow-xl hover:-translate-y-1 duration-300"
+              className="relative p-8 rounded-xl border border-black/10 dark:border-white/10 hover:border-[#0c4af3]/50 dark:hover:border-[#4c7af9]/50 transition-colors bg-white/50 dark:bg-black/50 backdrop-blur-sm hover:shadow-xl hover:-translate-y-1 duration-300 flex flex-col"
             >
               <div className="text-center mb-8">
                 <h3 className="text-2xl font-display font-bold mb-2">{pkg.name}</h3>
@@ -95,7 +95,7 @@ export const Pricing = () => {
                 </div>
               </div>
 
-              <ul className="space-y-4 mb-8">
+              <ul className="space-y-4 mb-8 flex-grow">
                 {pkg.features.map((feature, i) => (
                   <li key={i} className="flex items-center gap-2">
                     <Check className="w-5 h-5 text-[#0c4af3] dark:text-[#4c7af9] shrink-0" />
@@ -110,7 +110,7 @@ export const Pricing = () => {
                 ))}
               </ul>
 
-              <button className="w-full py-3 px-6 rounded-lg bg-[#0c4af3] dark:bg-[#4c7af9] text-white font-semibold hover:opacity-90 transition-opacity">
+              <button className="w-full py-3 px-6 rounded-lg bg-[#0c4af3] dark:bg-[#4c7af9] text-white font-semibold hover:opacity-90 transition-opacity mt-auto">
                 Get Started
               </button>
             </motion.div>
