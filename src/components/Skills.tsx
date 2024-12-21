@@ -45,7 +45,7 @@ const item = {
 
 export const Skills = () => {
   return (
-    <section className="py-20 px-4 bg-white dark:bg-black">
+    <section id="skills" className="py-20 px-4 bg-white dark:bg-black">
       <div className="max-w-4xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 20 }}

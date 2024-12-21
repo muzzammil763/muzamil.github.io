@@ -8,11 +8,8 @@ export const Header = () => {
   const [theme, setTheme] = useState("light");
   const { scrollY } = useScroll();
   
-  // Transform values for Flutter Developer text
   const titleOpacity = useTransform(scrollY, [300, 400], [0, 1]);
   const titleScale = useTransform(scrollY, [300, 400], [0.8, 1]);
-  
-  // Transform values for contact icons
   const iconsOpacity = useTransform(scrollY, [500, 600], [0, 1]);
   const iconsScale = useTransform(scrollY, [500, 600], [0.8, 1]);
 
@@ -20,6 +17,13 @@ export const Header = () => {
     const newTheme = theme === "light" ? "dark" : "light";
     setTheme(newTheme);
     document.documentElement.classList.toggle("dark");
+  };
+
+  const scrollToSection = (sectionId: string) => {
+    const element = document.getElementById(sectionId);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+    }
   };
 
   return (
@@ -54,19 +58,33 @@ export const Header = () => {
             </a>
           </motion.div>
         </div>
-        
-        <Button
-          variant="ghost"
-          size="icon"
-          onClick={toggleTheme}
-          className="rounded-full bg-black/10 hover:bg-black hover:text-white dark:bg-white/10 dark:hover:bg-white dark:hover:text-black transition-colors"
-        >
-          {theme === "light" ? (
-            <Moon className="h-5 w-5" />
-          ) : (
-            <Sun className="h-5 w-5" />
-          )}
-        </Button>
+
+        <div className="flex items-center gap-4">
+          <button
+            onClick={() => scrollToSection('skills')}
+            className="px-4 py-1.5 rounded-full bg-black/10 text-sm font-semibold hover:bg-black hover:text-white transition-colors dark:bg-white/10 dark:hover:bg-white dark:hover:text-black"
+          >
+            Skills
+          </button>
+          <button
+            onClick={() => scrollToSection('pricing')}
+            className="px-4 py-1.5 rounded-full bg-black/10 text-sm font-semibold hover:bg-black hover:text-white transition-colors dark:bg-white/10 dark:hover:bg-white dark:hover:text-black"
+          >
+            Pricing
+          </button>
+          <Button
+            variant="ghost"
+            size="icon"
+            onClick={toggleTheme}
+            className="rounded-full bg-black/10 hover:bg-black hover:text-white dark:bg-white/10 dark:hover:bg-white dark:hover:text-black transition-colors"
+          >
+            {theme === "light" ? (
+              <Moon className="h-5 w-5" />
+            ) : (
+              <Sun className="h-5 w-5" />
+            )}
+          </Button>
+        </div>
       </div>
     </motion.header>
   );
