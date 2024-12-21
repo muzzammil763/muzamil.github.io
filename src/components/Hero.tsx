@@ -12,6 +12,15 @@ export const Hero = () => {
           transition={{ duration: 0.5 }}
           className="space-y-6"
         >
+          <motion.h2
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.2 }}
+            className="text-3xl md:text-4xl font-display font-bold mb-4 text-black dark:text-white"
+          >
+            Muzamil Ghafoor
+          </motion.h2>
+
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}

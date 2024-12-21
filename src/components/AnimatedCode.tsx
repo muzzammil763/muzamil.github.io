@@ -1,5 +1,5 @@
 import { motion, AnimatePresence } from "framer-motion";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 
 const dartCode = `
 // Flutter App Example
@@ -20,17 +20,43 @@ export const AnimatedCode = () => {
   const [isVisible, setIsVisible] = useState(true);
   const [text, setText] = useState("");
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [isInView, setIsInView] = useState(false);
+  const codeRef = useRef(null);
 
   useEffect(() => {
-    if (currentIndex < dartCode.length) {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          setIsInView(entry.isIntersecting);
+          if (!entry.isIntersecting) {
+            setText("");
+            setCurrentIndex(0);
+          }
+        });
+      },
+      { threshold: 0.5 }
+    );
+
+    if (codeRef.current) {
+      observer.observe(codeRef.current);
+    }
+
+    return () => {
+      if (codeRef.current) {
+        observer.unobserve(codeRef.current);
+      }
+    };
+  }, []);
+
+  useEffect(() => {
+    if (isInView && currentIndex < dartCode.length) {
       const timeout = setTimeout(() => {
         setText((prev) => prev + dartCode[currentIndex]);
         setCurrentIndex((prev) => prev + 1);
       }, 50);
 
       return () => clearTimeout(timeout);
-    } else {
-      // Reset after completion
+    } else if (isInView && currentIndex >= dartCode.length) {
       const timeout = setTimeout(() => {
         setIsVisible(false);
         setTimeout(() => {
@@ -42,12 +68,13 @@ export const AnimatedCode = () => {
 
       return () => clearTimeout(timeout);
     }
-  }, [currentIndex, isVisible]);
+  }, [currentIndex, isVisible, isInView]);
 
   return (
     <AnimatePresence>
       {isVisible && (
         <motion.div
+          ref={codeRef}
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: -20 }}
@@ -59,7 +86,7 @@ export const AnimatedCode = () => {
                 <div key={i} className="leading-relaxed">
                   {line.split(' ').map((word, j) => {
                     let className = "text-white/80";
-                    if (word.includes("//")) className = "text-[#6A9955] pl-0"; // Comments
+                    if (word.includes("//")) className = "text-[#6A9955] pl-0";
                     else if (word.includes("class")) className = "text-[#569CD6]";
                     else if (word.includes("extends")) className = "text-[#569CD6]";
                     else if (word.includes("@override")) className = "text-[#569CD6]";
