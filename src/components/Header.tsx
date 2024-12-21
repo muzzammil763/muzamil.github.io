@@ -1,17 +1,29 @@
-import { Moon, Sun } from "lucide-react";
+import { Moon, Sun, Menu } from "lucide-react";
 import { Button } from "./ui/button";
 import { useEffect, useState } from "react";
 import { Github, Mail } from "lucide-react";
-import { motion, useScroll, useTransform } from "framer-motion";
+import { motion, useScroll } from "framer-motion";
+import {
+  Sheet,
+  SheetContent,
+  SheetTrigger,
+} from "@/components/ui/sheet";
 
 export const Header = () => {
   const [theme, setTheme] = useState("light");
   const { scrollY } = useScroll();
-  
-  const titleOpacity = useTransform(scrollY, [300, 400], [0, 1]);
-  const titleScale = useTransform(scrollY, [300, 400], [0.8, 1]);
-  const iconsOpacity = useTransform(scrollY, [500, 600], [0, 1]);
-  const iconsScale = useTransform(scrollY, [500, 600], [0.8, 1]);
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+    
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
 
   const toggleTheme = () => {
     const newTheme = theme === "light" ? "dark" : "light";
@@ -26,22 +38,55 @@ export const Header = () => {
     }
   };
 
+  const NavButtons = () => (
+    <>
+      <button
+        onClick={() => scrollToSection('skills')}
+        className="px-4 py-1.5 rounded-full bg-black/10 text-sm font-semibold hover:bg-black hover:text-white transition-colors dark:bg-white/10 dark:hover:bg-white dark:hover:text-black"
+      >
+        Skills
+      </button>
+      <button
+        onClick={() => scrollToSection('projects')}
+        className="px-4 py-1.5 rounded-full bg-black/10 text-sm font-semibold hover:bg-black hover:text-white transition-colors dark:bg-white/10 dark:hover:bg-white dark:hover:text-black"
+      >
+        Projects
+      </button>
+      <button
+        onClick={() => scrollToSection('pricing')}
+        className="px-4 py-1.5 rounded-full bg-black/10 text-sm font-semibold hover:bg-black hover:text-white transition-colors dark:bg-white/10 dark:hover:bg-white dark:hover:text-black"
+      >
+        Pricing
+      </button>
+    </>
+  );
+
   return (
     <motion.header
       className="fixed top-0 left-0 right-0 z-50 backdrop-blur-md bg-white/30 dark:bg-black/30 transition-colors"
     >
       <div className="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between">
         <div className="flex items-center gap-6">
-          <motion.span
-            style={{ opacity: titleOpacity, scale: titleScale }}
+          <Button
+            variant="ghost"
+            size="icon"
+            onClick={toggleTheme}
+            className="rounded-full bg-black/10 hover:bg-black hover:text-white dark:bg-white/10 dark:hover:bg-white dark:hover:text-black transition-colors"
+          >
+            {theme === "light" ? (
+              <Moon className="h-5 w-5" />
+            ) : (
+              <Sun className="h-5 w-5" />
+            )}
+          </Button>
+
+          <span
             className="px-4 py-1.5 rounded-full bg-black/10 text-sm font-semibold hover:bg-black hover:text-white transition-colors dark:bg-white/10 dark:hover:bg-white dark:hover:text-black"
           >
             Flutter Developer
-          </motion.span>
-          <motion.div
-            style={{ opacity: iconsOpacity, scale: iconsScale }}
-            className="flex items-center gap-2"
-          >
+          </span>
+          
+          <div className="flex items-center gap-2">
             <a
               href="https://github.com/muzzammil763"
               target="_blank"
@@ -56,35 +101,29 @@ export const Header = () => {
             >
               <Mail className="w-4 h-4" />
             </a>
-          </motion.div>
+          </div>
         </div>
 
-        <div className="flex items-center gap-4">
-          <button
-            onClick={() => scrollToSection('skills')}
-            className="px-4 py-1.5 rounded-full bg-black/10 text-sm font-semibold hover:bg-black hover:text-white transition-colors dark:bg-white/10 dark:hover:bg-white dark:hover:text-black"
-          >
-            Skills
-          </button>
-          <button
-            onClick={() => scrollToSection('pricing')}
-            className="px-4 py-1.5 rounded-full bg-black/10 text-sm font-semibold hover:bg-black hover:text-white transition-colors dark:bg-white/10 dark:hover:bg-white dark:hover:text-black"
-          >
-            Pricing
-          </button>
-          <Button
-            variant="ghost"
-            size="icon"
-            onClick={toggleTheme}
-            className="rounded-full bg-black/10 hover:bg-black hover:text-white dark:bg-white/10 dark:hover:bg-white dark:hover:text-black transition-colors"
-          >
-            {theme === "light" ? (
-              <Moon className="h-5 w-5" />
-            ) : (
-              <Sun className="h-5 w-5" />
-            )}
-          </Button>
-        </div>
+        {isMobile ? (
+          <Sheet>
+            <SheetTrigger asChild>
+              <Button
+                variant="ghost"
+                size="icon"
+                className="rounded-full bg-black/10 hover:bg-black hover:text-white dark:bg-white/10 dark:hover:bg-white dark:hover:text-black transition-colors"
+              >
+                <Menu className="h-5 w-5" />
+              </Button>
+            </SheetTrigger>
+            <SheetContent className="w-[240px] sm:w-[280px] flex flex-col gap-4 pt-10">
+              <NavButtons />
+            </SheetContent>
+          </Sheet>
+        ) : (
+          <div className="flex items-center gap-4">
+            <NavButtons />
+          </div>
+        )}
       </div>
     </motion.header>
   );

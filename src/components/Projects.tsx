@@ -81,7 +81,7 @@ export const Projects = () => {
   }, [api]);
 
   return (
-    <section className="py-12 px-4">
+    <section id="projects" className="py-12 px-4">
       <div className="max-w-6xl mx-auto">
         <div className="text-center mb-12">
           <h2 className="text-5xl font-display font-bold mb-4 text-[#0c4af3] dark:text-[#4c7af9]">
