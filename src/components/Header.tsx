@@ -1,4 +1,4 @@
-import { Moon, Sun, Menu, Lightbulb, Package, DollarSign, Quote } from "lucide-react";
+import { Moon, Sun, Menu, User2, Lightbulb, Package, DollarSign, Quote } from "lucide-react";
 import { Button } from "./ui/button";
 import { useEffect, useState } from "react";
 import { Github, Mail } from "lucide-react";
@@ -44,6 +44,13 @@ export const Header = () => {
 
   const NavButtons = () => (
     <>
+      <button
+        onClick={() => scrollToSection('about')}
+        className="flex items-center gap-2 w-full px-4 py-1.5 rounded-full bg-black/10 text-sm font-semibold hover:bg-black hover:text-white transition-colors dark:bg-white/10 dark:hover:bg-white dark:hover:text-black text-left"
+      >
+        <User2 className="w-4 h-4" />
+        About
+      </button>
       <button
         onClick={() => scrollToSection('skills')}
         className="flex items-center gap-2 w-full px-4 py-1.5 rounded-full bg-black/10 text-sm font-semibold hover:bg-black hover:text-white transition-colors dark:bg-white/10 dark:hover:bg-white dark:hover:text-black text-left"
