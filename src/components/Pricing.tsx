@@ -57,6 +57,11 @@ const item = {
 };
 
 export const Pricing = () => {
+  const handleGetStarted = (packageName: string) => {
+    const subject = encodeURIComponent(`Interested in ${packageName} Package`);
+    window.location.href = `mailto:deadbase763@gmail.com?subject=${subject}`;
+  };
+
   return (
     <section id="pricing" className="py-20 px-4 bg-muted dark:bg-black">
       <div className="max-w-6xl mx-auto">
@@ -110,7 +115,10 @@ export const Pricing = () => {
                 ))}
               </ul>
 
-              <button className="w-full py-3 px-6 rounded-lg bg-[#0c4af3] dark:bg-[#4c7af9] text-white font-semibold hover:opacity-90 transition-opacity mt-auto">
+              <button 
+                onClick={() => handleGetStarted(pkg.name)}
+                className="w-full py-3 px-6 rounded-lg bg-[#0c4af3] dark:bg-[#4c7af9] text-white font-semibold hover:opacity-90 transition-opacity mt-auto"
+              >
                 Get Started
               </button>
             </motion.div>

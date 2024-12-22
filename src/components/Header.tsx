@@ -1,4 +1,4 @@
-import { Moon, Sun, Menu, Lightbulb, Package, DollarSign } from "lucide-react";
+import { Moon, Sun, Menu, Lightbulb, Package, DollarSign, Quote } from "lucide-react";
 import { Button } from "./ui/button";
 import { useEffect, useState } from "react";
 import { Github, Mail } from "lucide-react";
@@ -64,6 +64,13 @@ export const Header = () => {
       >
         <DollarSign className="w-4 h-4" />
         Pricing
+      </button>
+      <button
+        onClick={() => scrollToSection('quotes')}
+        className="flex items-center gap-2 w-full px-4 py-1.5 rounded-full bg-black/10 text-sm font-semibold hover:bg-black hover:text-white transition-colors dark:bg-white/10 dark:hover:bg-white dark:hover:text-black text-left"
+      >
+        <Quote className="w-4 h-4" />
+        Quotes
       </button>
       {isMobile && (
         <div className="flex flex-col gap-4 mt-4">
