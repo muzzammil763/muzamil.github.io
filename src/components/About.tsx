@@ -1,13 +1,31 @@
 import { motion } from "framer-motion";
-import { SiFlutter, SiDart, SiFirebase } from "react-icons/si";
+import { 
+  SiFlutter, 
+  SiDart, 
+  SiFirebase, 
+  SiRedux, 
+  SiHtml5, 
+  SiCss3, 
+  SiJavascript,
+  SiReact,
+  SiSupabase,
+  SiPostman,
+  SiGit
+} from "react-icons/si";
 
 export const About = () => {
   const skills = [
     { icon: SiFlutter, label: "Flutter", angle: 0 },
-    { icon: SiDart, label: "Dart", angle: 72 },
-    { icon: SiFirebase, label: "Firebase", angle: 144 },
-    { icon: SiFlutter, label: "Flutter Flow", angle: 216 },
-    { icon: SiDart, label: "Mobile Dev", angle: 288 },
+    { icon: SiDart, label: "Dart", angle: 32.7 },
+    { icon: SiFirebase, label: "Firebase", angle: 65.4 },
+    { icon: SiRedux, label: "State Management", angle: 98.1 },
+    { icon: SiReact, label: "React", angle: 130.8 },
+    { icon: SiSupabase, label: "Supabase", angle: 163.5 },
+    { icon: SiPostman, label: "REST APIs", angle: 196.2 },
+    { icon: SiGit, label: "Git", angle: 229.9 },
+    { icon: SiHtml5, label: "HTML", angle: 262.6 },
+    { icon: SiCss3, label: "CSS", angle: 295.3 },
+    { icon: SiJavascript, label: "JavaScript", angle: 328 }
   ];
 
   return (
@@ -57,7 +75,7 @@ export const About = () => {
                 }}
               >
                 <div
-                  className="bg-white dark:bg-black shadow-lg rounded-full p-3 flex items-center justify-center"
+                  className="bg-white dark:bg-black shadow-lg rounded-full p-3 flex items-center justify-center hover:scale-110 transition-transform"
                   style={{
                     transform: `rotate(-${skill.angle}deg)`,
                   }}
