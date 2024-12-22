@@ -1,4 +1,4 @@
-import { Moon, Sun, Menu } from "lucide-react";
+import { Moon, Sun, Menu, Lightbulb, Package, DollarSign } from "lucide-react";
 import { Button } from "./ui/button";
 import { useEffect, useState } from "react";
 import { Github, Mail } from "lucide-react";
@@ -13,6 +13,7 @@ export const Header = () => {
   const [theme, setTheme] = useState("light");
   const { scrollY } = useScroll();
   const [isMobile, setIsMobile] = useState(false);
+  const [isSheetOpen, setIsSheetOpen] = useState(false);
 
   useEffect(() => {
     const checkMobile = () => {
@@ -32,30 +33,36 @@ export const Header = () => {
   };
 
   const scrollToSection = (sectionId: string) => {
-    const element = document.getElementById(sectionId);
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
-    }
+    setIsSheetOpen(false); // Close the sheet first
+    setTimeout(() => { // Add a small delay to allow sheet closing animation
+      const element = document.getElementById(sectionId);
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth' });
+      }
+    }, 300);
   };
 
   const NavButtons = () => (
     <>
       <button
         onClick={() => scrollToSection('skills')}
-        className="px-4 py-1.5 rounded-full bg-black/10 text-sm font-semibold hover:bg-black hover:text-white transition-colors dark:bg-white/10 dark:hover:bg-white dark:hover:text-black"
+        className="flex items-center gap-2 w-full px-4 py-1.5 rounded-full bg-black/10 text-sm font-semibold hover:bg-black hover:text-white transition-colors dark:bg-white/10 dark:hover:bg-white dark:hover:text-black text-left"
       >
+        <Lightbulb className="w-4 h-4" />
         Skills
       </button>
       <button
         onClick={() => scrollToSection('projects')}
-        className="px-4 py-1.5 rounded-full bg-black/10 text-sm font-semibold hover:bg-black hover:text-white transition-colors dark:bg-white/10 dark:hover:bg-white dark:hover:text-black"
+        className="flex items-center gap-2 w-full px-4 py-1.5 rounded-full bg-black/10 text-sm font-semibold hover:bg-black hover:text-white transition-colors dark:bg-white/10 dark:hover:bg-white dark:hover:text-black text-left"
       >
+        <Package className="w-4 h-4" />
         Projects
       </button>
       <button
         onClick={() => scrollToSection('pricing')}
-        className="px-4 py-1.5 rounded-full bg-black/10 text-sm font-semibold hover:bg-black hover:text-white transition-colors dark:bg-white/10 dark:hover:bg-white dark:hover:text-black"
+        className="flex items-center gap-2 w-full px-4 py-1.5 rounded-full bg-black/10 text-sm font-semibold hover:bg-black hover:text-white transition-colors dark:bg-white/10 dark:hover:bg-white dark:hover:text-black text-left"
       >
+        <DollarSign className="w-4 h-4" />
         Pricing
       </button>
       {isMobile && (
@@ -64,14 +71,14 @@ export const Header = () => {
             href="https://github.com/muzzammil763"
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center gap-2 px-4 py-1.5 rounded-full bg-black/10 text-sm font-semibold hover:bg-black hover:text-white transition-colors dark:bg-white/10 dark:hover:bg-white dark:hover:text-black"
+            className="flex items-center gap-2 px-4 py-1.5 rounded-full bg-black/10 text-sm font-semibold hover:bg-black hover:text-white transition-colors dark:bg-white/10 dark:hover:bg-white dark:hover:text-black text-left"
           >
             <Github className="w-4 h-4" />
             GitHub
           </a>
           <a
             href="mailto:deadbase763@gmail.com"
-            className="flex items-center gap-2 px-4 py-1.5 rounded-full bg-black/10 text-sm font-semibold hover:bg-black hover:text-white transition-colors dark:bg-white/10 dark:hover:bg-white dark:hover:text-black"
+            className="flex items-center gap-2 px-4 py-1.5 rounded-full bg-black/10 text-sm font-semibold hover:bg-black hover:text-white transition-colors dark:bg-white/10 dark:hover:bg-white dark:hover:text-black text-left"
           >
             <Mail className="w-4 h-4" />
             Email
@@ -126,7 +133,7 @@ export const Header = () => {
           </div>
 
           {isMobile ? (
-            <Sheet>
+            <Sheet open={isSheetOpen} onOpenChange={setIsSheetOpen}>
               <SheetTrigger asChild>
                 <Button
                   variant="ghost"
