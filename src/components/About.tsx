@@ -17,16 +17,13 @@ import { TbBrandFlutter } from "react-icons/tb";
 export const About = () => {
   const skills = [
     { icon: TbBrandFlutter, label: "Flutter", angle: 0 },
-    { icon: SiDart, label: "Dart", angle: 32.7 },
-    { icon: SiFirebase, label: "Firebase", angle: 65.4 },
-    { icon: SiRedux, label: "State Management", angle: 98.1 },
-    { icon: SiReact, label: "React", angle: 130.8 },
-    { icon: SiSupabase, label: "Supabase", angle: 163.5 },
-    { icon: SiPostman, label: "REST APIs", angle: 196.2 },
-    { icon: SiGit, label: "Git", angle: 229.9 },
-    { icon: SiHtml5, label: "HTML", angle: 262.6 },
-    { icon: SiCss3, label: "CSS", angle: 295.3 },
-    { icon: SiJavascript, label: "JavaScript", angle: 328 }
+    { icon: SiDart, label: "Dart", angle: 45 },
+    { icon: SiFirebase, label: "Firebase", angle: 90 },
+    { icon: SiRedux, label: "State Management", angle: 135 },
+    { icon: SiReact, label: "React", angle: 180 },
+    { icon: SiSupabase, label: "Supabase", angle: 225 },
+    { icon: SiPostman, label: "REST APIs", angle: 270 },
+    { icon: SiGit, label: "Git", angle: 315 }
   ];
 
   return (
@@ -50,18 +47,22 @@ export const About = () => {
             whileInView={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.5 }}
             viewport={{ once: true }}
-            className="relative w-64 h-64"
+            className="relative w-80 h-80"
           >
-            <div className="w-64 h-64 rounded-full bg-gradient-to-br from-[#0c4af3] to-[#4c7af9] p-1">
-              <div className="w-full h-full rounded-full bg-white dark:bg-black p-2">
-                <img
-                  src="/placeholder.svg"
-                  alt="Anonymous Profile"
-                  className="w-full h-full rounded-full object-cover"
-                />
+            {/* Central Profile Picture */}
+            <div className="absolute inset-0 m-auto w-48 h-48">
+              <div className="w-full h-full rounded-full bg-gradient-to-br from-[#0c4af3] to-[#4c7af9] p-1">
+                <div className="w-full h-full rounded-full bg-white dark:bg-black p-2">
+                  <img
+                    src="/placeholder.svg"
+                    alt="Anonymous Profile"
+                    className="w-full h-full rounded-full object-cover"
+                  />
+                </div>
               </div>
             </div>
 
+            {/* Orbital Skills */}
             {skills.map((skill, index) => (
               <motion.div
                 key={index}
@@ -69,23 +70,20 @@ export const About = () => {
                 whileInView={{ opacity: 1, scale: 1 }}
                 transition={{ delay: index * 0.1 }}
                 viewport={{ once: true }}
-                className="absolute"
+                className="absolute top-1/2 left-1/2"
                 style={{
-                  transform: `rotate(${skill.angle}deg) translateY(-140px)`,
-                  transformOrigin: "center center",
-                  left: "50%",
-                  top: "50%",
+                  transform: `rotate(${skill.angle}deg) translate(120px) rotate(-${skill.angle}deg)`,
                   marginLeft: "-20px",
                   marginTop: "-20px",
                 }}
               >
                 <div
-                  className="bg-white dark:bg-black shadow-lg rounded-full p-3 flex items-center justify-center hover:scale-110 transition-transform"
-                  style={{
-                    transform: `rotate(-${skill.angle}deg)`,
-                  }}
+                  className="bg-white dark:bg-black shadow-lg rounded-full p-3 flex items-center justify-center hover:scale-110 transition-transform cursor-pointer group relative"
                 >
-                  <skill.icon className="w-6 h-6 text-[#0c4af3] dark:text-[#4c7af9]" />
+                  <skill.icon className="w-8 h-8 text-[#0c4af3] dark:text-[#4c7af9]" />
+                  <span className="absolute -bottom-8 left-1/2 transform -translate-x-1/2 opacity-0 group-hover:opacity-100 transition-opacity text-sm whitespace-nowrap bg-black text-white dark:bg-white dark:text-black px-2 py-1 rounded">
+                    {skill.label}
+                  </span>
                 </div>
               </motion.div>
             ))}
