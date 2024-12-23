@@ -1,33 +1,6 @@
 import { motion } from "framer-motion";
-import { 
-  SiFlutter, 
-  SiDart, 
-  SiFirebase, 
-  SiRedux, 
-  SiHtml5, 
-  SiCss3, 
-  SiJavascript,
-  SiReact,
-  SiSupabase,
-  SiPostman,
-  SiGit
-} from "react-icons/si";
 
 export const About = () => {
-  const skills = [
-    { icon: SiFlutter, label: "Flutter", angle: 0 },
-    { icon: SiDart, label: "Dart", angle: 32.7 },
-    { icon: SiFirebase, label: "Firebase", angle: 65.4 },
-    { icon: SiRedux, label: "State Management", angle: 98.1 },
-    { icon: SiReact, label: "React", angle: 130.8 },
-    { icon: SiSupabase, label: "Supabase", angle: 163.5 },
-    { icon: SiPostman, label: "REST APIs", angle: 196.2 },
-    { icon: SiGit, label: "Git", angle: 229.9 },
-    { icon: SiHtml5, label: "HTML", angle: 262.6 },
-    { icon: SiCss3, label: "CSS", angle: 295.3 },
-    { icon: SiJavascript, label: "JavaScript", angle: 328 }
-  ];
-
   return (
     <section id="about" className="py-20 px-4 bg-white dark:bg-black">
       <div className="max-w-4xl mx-auto">
@@ -49,41 +22,17 @@ export const About = () => {
             whileInView={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.5 }}
             viewport={{ once: true }}
-            className="relative w-64 h-64"
+            className="relative w-80 h-80 md:w-96 md:h-96" // Increased size
           >
-            <div className="w-64 h-64 rounded-full bg-gradient-to-br from-[#0c4af3] to-[#4c7af9] p-1">
+            <div className="w-full h-full rounded-full bg-gradient-to-br from-[#0c4af3] to-[#4c7af9] p-1">
               <div className="w-full h-full rounded-full bg-white dark:bg-black p-2">
                 <img
-                  src="/placeholder.svg"
-                  alt="Anonymous Profile"
+                  src="/lovable-uploads/4ffa1163-5685-4b79-a749-178ffae71e5e.png"
+                  alt="Profile"
                   className="w-full h-full rounded-full object-cover"
                 />
               </div>
             </div>
-
-            {skills.map((skill, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, scale: 0 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                transition={{ delay: index * 0.1 }}
-                viewport={{ once: true }}
-                className="absolute"
-                style={{
-                  transform: `rotate(${skill.angle}deg) translateY(-120px)`,
-                  transformOrigin: "center center",
-                }}
-              >
-                <div
-                  className="bg-white dark:bg-black shadow-lg rounded-full p-3 flex items-center justify-center hover:scale-110 transition-transform"
-                  style={{
-                    transform: `rotate(-${skill.angle}deg)`,
-                  }}
-                >
-                  <skill.icon className="w-6 h-6 text-[#0c4af3] dark:text-[#4c7af9]" />
-                </div>
-              </motion.div>
-            ))}
           </motion.div>
 
           <motion.div
