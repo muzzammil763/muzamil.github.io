@@ -12,10 +12,11 @@ import {
   SiPostman,
   SiGit
 } from "react-icons/si";
+import { TbBrandFlutter } from "react-icons/tb";
 
 export const About = () => {
   const skills = [
-    { icon: SiFlutter, label: "Flutter", angle: 0 },
+    { icon: TbBrandFlutter, label: "Flutter", angle: 0 },
     { icon: SiDart, label: "Dart", angle: 32.7 },
     { icon: SiFirebase, label: "Firebase", angle: 65.4 },
     { icon: SiRedux, label: "State Management", angle: 98.1 },
@@ -70,8 +71,12 @@ export const About = () => {
                 viewport={{ once: true }}
                 className="absolute"
                 style={{
-                  transform: `rotate(${skill.angle}deg) translateY(-120px)`,
+                  transform: `rotate(${skill.angle}deg) translateY(-140px)`,
                   transformOrigin: "center center",
+                  left: "50%",
+                  top: "50%",
+                  marginLeft: "-20px",
+                  marginTop: "-20px",
                 }}
               >
                 <div
