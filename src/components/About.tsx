@@ -1,24 +1,6 @@
 import { motion } from "framer-motion";
-import { 
-  SiFlutter, 
-  SiDart, 
-  SiFirebase, 
-  SiRedux, 
-  SiReact,
-  SiSupabase,
-  SiPostman,
-  SiGit
-} from "react-icons/si";
-import { TbBrandFlutter } from "react-icons/tb";
 
 export const About = () => {
-  const skills = [
-    { icon: TbBrandFlutter, label: "Flutter", angle: 0 },
-    { icon: SiDart, label: "Dart", angle: 90 },
-    { icon: SiFirebase, label: "Firebase", angle: 180 },
-    { icon: SiRedux, label: "State Management", angle: 270 }
-  ];
-
   return (
     <section id="about" className="py-20 px-4 bg-white dark:bg-black">
       <div className="max-w-4xl mx-auto">
@@ -42,42 +24,17 @@ export const About = () => {
             viewport={{ once: true }}
             className="relative w-[300px] h-[300px]"
           >
-            {/* Central Profile Picture with cyan background */}
             <div className="absolute inset-0 m-auto w-48 h-48">
               <div className="w-full h-full rounded-full bg-[#00ffff]/20 backdrop-blur-sm p-1">
                 <div className="w-full h-full rounded-full bg-white dark:bg-black p-2">
                   <img
-                    src="/placeholder.svg"
-                    alt="Anonymous Profile"
+                    src="https://images.unsplash.com/photo-1488590528505-98d2b5aba04b"
+                    alt="Profile"
                     className="w-full h-full rounded-full object-cover"
                   />
                 </div>
               </div>
             </div>
-
-            {/* Orbital Skills */}
-            {skills.map((skill, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, scale: 0 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                transition={{ delay: index * 0.2 }}
-                viewport={{ once: true }}
-                className="absolute top-1/2 left-1/2"
-                style={{
-                  transform: `rotate(${skill.angle}deg) translate(140px) rotate(-${skill.angle}deg)`,
-                  marginLeft: "-30px",
-                  marginTop: "-30px",
-                }}
-              >
-                <div className="w-[60px] h-[60px] bg-[#00ffff]/20 backdrop-blur-sm rounded-full flex items-center justify-center hover:scale-110 transition-transform cursor-pointer group">
-                  <skill.icon className="w-8 h-8 text-[#0c4af3] dark:text-[#4c7af9]" />
-                  <span className="absolute -bottom-8 left-1/2 transform -translate-x-1/2 opacity-0 group-hover:opacity-100 transition-opacity text-sm whitespace-nowrap bg-black text-white dark:bg-white dark:text-black px-2 py-1 rounded">
-                    {skill.label}
-                  </span>
-                </div>
-              </motion.div>
-            ))}
           </motion.div>
 
           <motion.div

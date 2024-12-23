@@ -1,11 +1,4 @@
 import { motion } from "framer-motion";
-import { Swiper, SwiperSlide } from "swiper/react";
-import { Navigation, Pagination } from "swiper/modules";
-
-// Import Swiper styles
-import "swiper/css";
-import "swiper/css/navigation";
-import "swiper/css/pagination";
 
 const projects = [
   {
@@ -44,38 +37,24 @@ export const Projects = () => {
           </p>
         </motion.div>
 
-        <Swiper
-          spaceBetween={30}
-          slidesPerView={1}
-          navigation={false}
-          pagination={{
-            clickable: true,
-            bulletClass: 'swiper-pagination-bullet !bg-black dark:!bg-white opacity-70 hover:opacity-100 transition-opacity',
-            bulletActiveClass: 'swiper-pagination-bullet-active !bg-black dark:!bg-white !opacity-100',
-          }}
-          breakpoints={{
-            640: {
-              slidesPerView: 2,
-            },
-            1024: {
-              slidesPerView: 3,
-            },
-          }}
-          modules={[Navigation, Pagination]}
-          className="!pb-12"
-        >
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {projects.map((project, index) => (
-            <SwiperSlide key={index}>
-              <div className="bg-white dark:bg-black rounded-lg shadow-lg overflow-hidden">
-                <img src={project.image} alt={project.title} className="w-full h-48 object-cover" />
-                <div className="p-4">
-                  <h3 className="text-xl font-semibold text-[#0c4af3] dark:text-[#4c7af9]">{project.title}</h3>
-                  <p className="text-black/60 dark:text-white/60">{project.description}</p>
-                </div>
+            <motion.div
+              key={index}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: index * 0.1 }}
+              viewport={{ once: true }}
+              className="bg-white dark:bg-black rounded-lg shadow-lg overflow-hidden"
+            >
+              <img src={project.image} alt={project.title} className="w-full h-48 object-cover" />
+              <div className="p-4">
+                <h3 className="text-xl font-semibold text-[#0c4af3] dark:text-[#4c7af9]">{project.title}</h3>
+                <p className="text-black/60 dark:text-white/60">{project.description}</p>
               </div>
-            </SwiperSlide>
+            </motion.div>
           ))}
-        </Swiper>
+        </div>
       </div>
     </section>
   );
