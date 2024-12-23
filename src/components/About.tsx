@@ -4,9 +4,6 @@ import {
   SiDart, 
   SiFirebase, 
   SiRedux, 
-  SiHtml5, 
-  SiCss3, 
-  SiJavascript,
   SiReact,
   SiSupabase,
   SiPostman,
@@ -17,13 +14,9 @@ import { TbBrandFlutter } from "react-icons/tb";
 export const About = () => {
   const skills = [
     { icon: TbBrandFlutter, label: "Flutter", angle: 0 },
-    { icon: SiDart, label: "Dart", angle: 45 },
-    { icon: SiFirebase, label: "Firebase", angle: 90 },
-    { icon: SiRedux, label: "State Management", angle: 135 },
-    { icon: SiReact, label: "React", angle: 180 },
-    { icon: SiSupabase, label: "Supabase", angle: 225 },
-    { icon: SiPostman, label: "REST APIs", angle: 270 },
-    { icon: SiGit, label: "Git", angle: 315 }
+    { icon: SiDart, label: "Dart", angle: 90 },
+    { icon: SiFirebase, label: "Firebase", angle: 180 },
+    { icon: SiRedux, label: "State Management", angle: 270 }
   ];
 
   return (
@@ -47,11 +40,11 @@ export const About = () => {
             whileInView={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.5 }}
             viewport={{ once: true }}
-            className="relative w-80 h-80"
+            className="relative w-[300px] h-[300px]"
           >
-            {/* Central Profile Picture */}
+            {/* Central Profile Picture with cyan background */}
             <div className="absolute inset-0 m-auto w-48 h-48">
-              <div className="w-full h-full rounded-full bg-gradient-to-br from-[#0c4af3] to-[#4c7af9] p-1">
+              <div className="w-full h-full rounded-full bg-[#00ffff]/20 backdrop-blur-sm p-1">
                 <div className="w-full h-full rounded-full bg-white dark:bg-black p-2">
                   <img
                     src="/placeholder.svg"
@@ -68,18 +61,16 @@ export const About = () => {
                 key={index}
                 initial={{ opacity: 0, scale: 0 }}
                 whileInView={{ opacity: 1, scale: 1 }}
-                transition={{ delay: index * 0.1 }}
+                transition={{ delay: index * 0.2 }}
                 viewport={{ once: true }}
                 className="absolute top-1/2 left-1/2"
                 style={{
-                  transform: `rotate(${skill.angle}deg) translate(120px) rotate(-${skill.angle}deg)`,
-                  marginLeft: "-20px",
-                  marginTop: "-20px",
+                  transform: `rotate(${skill.angle}deg) translate(140px) rotate(-${skill.angle}deg)`,
+                  marginLeft: "-30px",
+                  marginTop: "-30px",
                 }}
               >
-                <div
-                  className="bg-white dark:bg-black shadow-lg rounded-full p-3 flex items-center justify-center hover:scale-110 transition-transform cursor-pointer group relative"
-                >
+                <div className="w-[60px] h-[60px] bg-[#00ffff]/20 backdrop-blur-sm rounded-full flex items-center justify-center hover:scale-110 transition-transform cursor-pointer group">
                   <skill.icon className="w-8 h-8 text-[#0c4af3] dark:text-[#4c7af9]" />
                   <span className="absolute -bottom-8 left-1/2 transform -translate-x-1/2 opacity-0 group-hover:opacity-100 transition-opacity text-sm whitespace-nowrap bg-black text-white dark:bg-white dark:text-black px-2 py-1 rounded">
                     {skill.label}
