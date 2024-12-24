@@ -1,4 +1,37 @@
 import { motion } from "framer-motion";
+import { Button } from "@/components/ui/button";
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "@/components/ui/popover";
+import { 
+  SiFlutter, 
+  SiDart, 
+  SiFirebase, 
+  SiRedux, 
+  SiHtml5, 
+  SiCss3, 
+  SiJavascript,
+  SiReact,
+  SiSupabase,
+  SiPostman,
+  SiGit
+} from "react-icons/si";
+
+const skills = [
+  { icon: SiFlutter, name: "Flutter" },
+  { icon: SiDart, name: "Dart" },
+  { icon: SiFirebase, name: "Firebase" },
+  { icon: SiRedux, name: "State Management" },
+  { icon: SiReact, name: "React" },
+  { icon: SiSupabase, name: "Supabase" },
+  { icon: SiPostman, name: "REST APIs" },
+  { icon: SiGit, name: "Git" },
+  { icon: SiHtml5, name: "HTML" },
+  { icon: SiCss3, name: "CSS" },
+  { icon: SiJavascript, name: "JavaScript" },
+];
 
 export const About = () => {
   return (
@@ -22,7 +55,7 @@ export const About = () => {
             whileInView={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.5 }}
             viewport={{ once: true }}
-            className="relative w-80 h-80 md:w-96 md:h-96" // Increased size
+            className="relative w-80 h-80 md:w-96 md:h-96"
           >
             <div className="w-full h-full rounded-full bg-gradient-to-br from-[#0c4af3] to-[#4c7af9] p-1">
               <div className="w-full h-full rounded-full bg-white dark:bg-black p-2">
@@ -53,6 +86,40 @@ export const About = () => {
             </p>
           </motion.div>
         </div>
+
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+          viewport={{ once: true }}
+          className="flex justify-center mt-12"
+        >
+          <Popover>
+            <PopoverTrigger asChild>
+              <Button 
+                variant="outline" 
+                size="lg"
+                className="group hover:border-[#0c4af3] dark:hover:border-[#4c7af9]"
+              >
+                <SiFlutter className="mr-2 h-5 w-5 text-[#0c4af3] dark:text-[#4c7af9] group-hover:animate-spin" />
+                View My Tech Stack
+              </Button>
+            </PopoverTrigger>
+            <PopoverContent className="w-80">
+              <div className="grid grid-cols-3 gap-4 p-4">
+                {skills.map((skill, index) => (
+                  <div 
+                    key={index}
+                    className="flex flex-col items-center gap-2 p-2 rounded-lg hover:bg-accent transition-colors"
+                  >
+                    <skill.icon className="h-8 w-8 text-[#0c4af3] dark:text-[#4c7af9]" />
+                    <span className="text-xs text-center font-medium">{skill.name}</span>
+                  </div>
+                ))}
+              </div>
+            </PopoverContent>
+          </Popover>
+        </motion.div>
       </div>
     </section>
   );
