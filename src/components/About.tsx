@@ -1,10 +1,10 @@
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import {
-  Popover,
-  PopoverContent,
-  PopoverTrigger,
-} from "@/components/ui/popover";
+  HoverCard,
+  HoverCardContent,
+  HoverCardTrigger,
+} from "@/components/ui/hover-card";
 import { 
   SiFlutter, 
   SiDart, 
@@ -94,31 +94,32 @@ export const About = () => {
           viewport={{ once: true }}
           className="flex justify-center mt-12"
         >
-          <Popover>
-            <PopoverTrigger asChild>
+          <HoverCard openDelay={0} closeDelay={0}>
+            <HoverCardTrigger asChild>
               <Button 
-                variant="outline" 
-                size="lg"
-                className="group hover:border-[#0c4af3] dark:hover:border-[#4c7af9]"
+                size="icon"
+                className="w-20 h-20 rounded-full bg-gradient-to-br from-[#0c4af3] to-[#4c7af9] hover:scale-110 transition-transform duration-300 group"
               >
-                <SiFlutter className="mr-2 h-5 w-5 text-[#0c4af3] dark:text-[#4c7af9] group-hover:animate-spin" />
-                View My Tech Stack
+                <SiFlutter className="w-10 h-10 text-white group-hover:animate-spin" />
               </Button>
-            </PopoverTrigger>
-            <PopoverContent className="w-80">
-              <div className="grid grid-cols-3 gap-4 p-4">
+            </HoverCardTrigger>
+            <HoverCardContent 
+              side="right" 
+              className="w-[500px] p-4 bg-white/95 dark:bg-black/95 backdrop-blur-sm border-[#0c4af3]/20"
+            >
+              <div className="flex gap-4 overflow-x-auto py-2 px-4">
                 {skills.map((skill, index) => (
                   <div 
                     key={index}
-                    className="flex flex-col items-center gap-2 p-2 rounded-lg hover:bg-accent transition-colors"
+                    className="flex flex-col items-center gap-2 p-3 rounded-lg hover:bg-accent/50 transition-colors flex-shrink-0"
                   >
-                    <skill.icon className="h-8 w-8 text-[#0c4af3] dark:text-[#4c7af9]" />
-                    <span className="text-xs text-center font-medium">{skill.name}</span>
+                    <skill.icon className="h-10 w-10 text-[#0c4af3] dark:text-[#4c7af9]" />
+                    <span className="text-sm font-medium whitespace-nowrap">{skill.name}</span>
                   </div>
                 ))}
               </div>
-            </PopoverContent>
-          </Popover>
+            </HoverCardContent>
+          </HoverCard>
         </motion.div>
       </div>
     </section>
