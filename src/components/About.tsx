@@ -1,48 +1,7 @@
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
-import { 
-  SiFlutter, 
-  SiDart, 
-  SiFirebase, 
-  SiRedux, 
-  SiHtml5, 
-  SiCss3, 
-  SiJavascript,
-  SiReact,
-  SiSupabase,
-  SiPostman,
-  SiGit
-} from "react-icons/si";
-import { useState } from "react";
-
-const skills = [
-  { icon: SiFlutter, name: "Flutter" },
-  { icon: SiReact, name: "React" },
-  { icon: SiJavascript, name: "JavaScript" },
-  { icon: SiFirebase, name: "Firebase" },
-  { icon: SiSupabase, name: "Supabase" },
-];
 
 export const About = () => {
-  const [isHovering, setIsHovering] = useState(false);
-  const [currentIconIndex, setCurrentIconIndex] = useState(0);
-
-  // Effect to cycle through icons when hovering
-  const startIconCycle = () => {
-    setIsHovering(true);
-    const interval = setInterval(() => {
-      setCurrentIconIndex((prev) => (prev + 1) % skills.length);
-    }, 2500); // Changed to 2.5 seconds
-    return interval;
-  };
-
-  const stopIconCycle = () => {
-    setIsHovering(false);
-    setCurrentIconIndex(0);
-  };
-
-  const CurrentIcon = skills[currentIconIndex].icon;
-
   return (
     <section id="about" className="py-20 px-4 bg-white dark:bg-black">
       <div className="max-w-4xl mx-auto">
@@ -95,38 +54,6 @@ export const About = () => {
             </p>
           </motion.div>
         </div>
-
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-          viewport={{ once: true }}
-          className="flex justify-center mt-12"
-        >
-          <motion.div
-            className="w-80 h-80 md:w-96 md:h-96 rounded-full bg-gradient-to-br from-[#0c4af3] to-[#4c7af9] p-1 cursor-pointer"
-            onMouseEnter={() => {
-              const interval = startIconCycle();
-              return () => clearInterval(interval);
-            }}
-            onMouseLeave={stopIconCycle}
-            whileHover={{ scale: 1.05 }}
-            transition={{ duration: 0.3 }}
-          >
-            <div className="w-full h-full rounded-full bg-white dark:bg-black flex items-center justify-center">
-              <motion.div
-                key={currentIconIndex}
-                initial={{ opacity: 0, rotate: -180 }}
-                animate={{ opacity: 1, rotate: 0 }}
-                exit={{ opacity: 0, rotate: 180 }}
-                transition={{ duration: 0.5 }}
-                className="w-3/4 h-3/4"
-              >
-                <CurrentIcon className="w-full h-full text-[#0c4af3] dark:text-[#4c7af9]" />
-              </motion.div>
-            </div>
-          </motion.div>
-        </motion.div>
       </div>
     </section>
   );
