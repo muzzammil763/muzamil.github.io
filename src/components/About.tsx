@@ -1,10 +1,5 @@
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
-import {
-  HoverCard,
-  HoverCardContent,
-  HoverCardTrigger,
-} from "@/components/ui/hover-card";
 import { 
   SiFlutter, 
   SiDart, 
@@ -18,22 +13,36 @@ import {
   SiPostman,
   SiGit
 } from "react-icons/si";
+import { useState } from "react";
 
 const skills = [
   { icon: SiFlutter, name: "Flutter" },
-  { icon: SiDart, name: "Dart" },
-  { icon: SiFirebase, name: "Firebase" },
-  { icon: SiRedux, name: "State Management" },
   { icon: SiReact, name: "React" },
-  { icon: SiSupabase, name: "Supabase" },
-  { icon: SiPostman, name: "REST APIs" },
-  { icon: SiGit, name: "Git" },
-  { icon: SiHtml5, name: "HTML" },
-  { icon: SiCss3, name: "CSS" },
   { icon: SiJavascript, name: "JavaScript" },
+  { icon: SiFirebase, name: "Firebase" },
+  { icon: SiSupabase, name: "Supabase" },
 ];
 
 export const About = () => {
+  const [isHovering, setIsHovering] = useState(false);
+  const [currentIconIndex, setCurrentIconIndex] = useState(0);
+
+  // Effect to cycle through icons when hovering
+  const startIconCycle = () => {
+    setIsHovering(true);
+    const interval = setInterval(() => {
+      setCurrentIconIndex((prev) => (prev + 1) % skills.length);
+    }, 2000); // Change icon every 2 seconds
+    return interval;
+  };
+
+  const stopIconCycle = () => {
+    setIsHovering(false);
+    setCurrentIconIndex(0);
+  };
+
+  const CurrentIcon = skills[currentIconIndex].icon;
+
   return (
     <section id="about" className="py-20 px-4 bg-white dark:bg-black">
       <div className="max-w-4xl mx-auto">
@@ -94,32 +103,28 @@ export const About = () => {
           viewport={{ once: true }}
           className="flex justify-center mt-12"
         >
-          <HoverCard openDelay={0} closeDelay={0}>
-            <HoverCardTrigger asChild>
-              <Button 
-                size="icon"
-                className="w-20 h-20 rounded-full bg-gradient-to-br from-[#0c4af3] to-[#4c7af9] hover:scale-110 transition-transform duration-300 group"
+          <motion.div
+            className="w-96 h-96 rounded-full bg-gradient-to-br from-[#0c4af3] to-[#4c7af9] p-1 cursor-pointer"
+            onMouseEnter={() => {
+              const interval = startIconCycle();
+              return () => clearInterval(interval);
+            }}
+            onMouseLeave={stopIconCycle}
+            whileHover={{ scale: 1.05 }}
+            transition={{ duration: 0.3 }}
+          >
+            <div className="w-full h-full rounded-full bg-white dark:bg-black flex items-center justify-center p-32">
+              <motion.div
+                key={currentIconIndex}
+                initial={{ opacity: 0, rotate: -180 }}
+                animate={{ opacity: 1, rotate: 0 }}
+                exit={{ opacity: 0, rotate: 180 }}
+                transition={{ duration: 0.5 }}
               >
-                <SiFlutter className="w-10 h-10 text-white group-hover:animate-spin" />
-              </Button>
-            </HoverCardTrigger>
-            <HoverCardContent 
-              side="right" 
-              className="w-[500px] p-4 bg-white/95 dark:bg-black/95 backdrop-blur-sm border-[#0c4af3]/20"
-            >
-              <div className="flex gap-4 overflow-x-auto py-2 px-4">
-                {skills.map((skill, index) => (
-                  <div 
-                    key={index}
-                    className="flex flex-col items-center gap-2 p-3 rounded-lg hover:bg-accent/50 transition-colors flex-shrink-0"
-                  >
-                    <skill.icon className="h-10 w-10 text-[#0c4af3] dark:text-[#4c7af9]" />
-                    <span className="text-sm font-medium whitespace-nowrap">{skill.name}</span>
-                  </div>
-                ))}
-              </div>
-            </HoverCardContent>
-          </HoverCard>
+                <CurrentIcon className="w-full h-full text-[#0c4af3] dark:text-[#4c7af9]" />
+              </motion.div>
+            </div>
+          </motion.div>
         </motion.div>
       </div>
     </section>
