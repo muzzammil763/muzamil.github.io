@@ -13,20 +13,47 @@
     --ring: 224 71.4% 4.1%;
   }
 
+  .dark {
+    --background: 240 10% 4%;
+    --foreground: 0 0% 100%;
+    --border: 240 3.7% 15.9%;
+    --input: 240 3.7% 15.9%;
+    --ring: 240 4.9% 83.9%;
+  }
+
+  .glass {
+    --glass-light: linear-gradient(109.6deg, rgba(223,234,247,0.9) 11.2%, rgba(244,248,252,0.9) 91.1%);
+    --glass-dark: linear-gradient(90deg, rgba(20,20,20,0.9) 0%, rgba(40,40,40,0.9) 100%);
+  }
+
+  .glass.light {
+    background: var(--glass-light);
+    backdrop-filter: blur(10px);
+  }
+
+  .glass.dark {
+    background: var(--glass-dark);
+    backdrop-filter: blur(10px);
+  }
+
   * {
     @apply border-border;
   }
 
   body {
-    @apply bg-background text-foreground font-sans;
+    @apply bg-background text-foreground font-sans transition-colors duration-300;
   }
 
   .glass-card {
-    @apply backdrop-blur-md bg-white/30 border border-white/20 shadow-lg;
+    @apply backdrop-blur-md bg-white/30 dark:bg-black/30 border border-white/20 dark:border-white/10 shadow-lg;
   }
 
   .hover-card {
     @apply transition-all duration-300 hover:shadow-xl hover:-translate-y-1;
+  }
+
+  .glass-morphism {
+    @apply backdrop-blur-xl bg-white/5 dark:bg-black/5 border border-white/10 dark:border-white/5;
   }
 }
 

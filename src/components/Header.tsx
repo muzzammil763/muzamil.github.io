@@ -1,4 +1,4 @@
-import { Moon, Sun, Menu, User2, Lightbulb, Package, DollarSign, Quote } from "lucide-react";
+import { Moon, Sun, Menu, User2, Lightbulb, Package, DollarSign, Quote, Glasses } from "lucide-react";
 import { Button } from "./ui/button";
 import { useEffect, useState } from "react";
 import { Github, Mail } from "lucide-react";
@@ -11,6 +11,7 @@ import {
 
 export const Header = () => {
   const [theme, setTheme] = useState("light");
+  const [isGlass, setIsGlass] = useState(false);
   const { scrollY } = useScroll();
   const [isMobile, setIsMobile] = useState(false);
   const [isSheetOpen, setIsSheetOpen] = useState(false);
@@ -32,9 +33,20 @@ export const Header = () => {
     document.documentElement.classList.toggle("dark");
   };
 
+  const toggleGlass = () => {
+    setIsGlass(!isGlass);
+    if (!isGlass) {
+      document.documentElement.classList.add("glass");
+      document.documentElement.classList.add(theme);
+    } else {
+      document.documentElement.classList.remove("glass");
+      document.documentElement.classList.remove(theme);
+    }
+  };
+
   const scrollToSection = (sectionId: string) => {
-    setIsSheetOpen(false); // Close the sheet first
-    setTimeout(() => { // Add a small delay to allow sheet closing animation
+    setIsSheetOpen(false);
+    setTimeout(() => {
       const element = document.getElementById(sectionId);
       if (element) {
         element.scrollIntoView({ behavior: 'smooth' });
@@ -109,18 +121,33 @@ export const Header = () => {
       <div className="max-w-6xl mx-auto px-4 py-3">
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-4">
-            <Button
-              variant="ghost"
-              size="icon"
-              onClick={toggleTheme}
-              className="w-8 h-8 rounded-full bg-black/10 hover:bg-black hover:text-white dark:bg-white/10 dark:hover:bg-white dark:hover:text-black transition-colors"
-            >
-              {theme === "light" ? (
-                <Moon className="h-4 w-4" />
-              ) : (
-                <Sun className="h-4 w-4" />
-              )}
-            </Button>
+            <div className="flex items-center gap-2">
+              <Button
+                variant="ghost"
+                size="icon"
+                onClick={toggleTheme}
+                className="w-8 h-8 rounded-full bg-black/10 hover:bg-black hover:text-white dark:bg-white/10 dark:hover:bg-white dark:hover:text-black transition-colors"
+              >
+                {theme === "light" ? (
+                  <Moon className="h-4 w-4" />
+                ) : (
+                  <Sun className="h-4 w-4" />
+                )}
+              </Button>
+
+              <Button
+                variant="ghost"
+                size="icon"
+                onClick={toggleGlass}
+                className={`w-8 h-8 rounded-full ${
+                  isGlass 
+                    ? "bg-gradient-to-r from-purple-400 to-pink-400 text-white"
+                    : "bg-black/10 hover:bg-black hover:text-white dark:bg-white/10 dark:hover:bg-white dark:hover:text-black"
+                } transition-colors`}
+              >
+                <Glasses className="h-4 w-4" />
+              </Button>
+            </div>
 
             <span className="px-4 py-1.5 rounded-full bg-black/10 text-sm font-semibold whitespace-nowrap hover:bg-black hover:text-white transition-colors dark:bg-white/10 dark:hover:bg-white dark:hover:text-black">
               Flutter Developer
