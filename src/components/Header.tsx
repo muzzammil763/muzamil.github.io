@@ -1,6 +1,6 @@
 import { Menu } from "lucide-react";
 import { useEffect, useState } from "react";
-import { motion, useScroll } from "framer-motion";
+import { motion } from "framer-motion";
 import {
   Sheet,
   SheetContent,
@@ -14,7 +14,6 @@ import { SocialLinks } from "./header/SocialLinks";
 export const Header = () => {
   const [theme, setTheme] = useState("light");
   const [isGlass, setIsGlass] = useState(false);
-  const { scrollY } = useScroll();
   const [isMobile, setIsMobile] = useState(false);
   const [isSheetOpen, setIsSheetOpen] = useState(false);
 
@@ -43,9 +42,12 @@ export const Header = () => {
     setIsGlass(!isGlass);
     if (!isGlass) {
       document.body.classList.add("glass", theme);
+      document.documentElement.classList.add("glass", theme);
     } else {
       document.body.classList.remove("glass", "light", "dark");
+      document.documentElement.classList.remove("glass", "light", "dark");
       document.body.classList.add(theme);
+      document.documentElement.classList.add(theme);
     }
   };
 
@@ -61,7 +63,7 @@ export const Header = () => {
 
   return (
     <motion.header
-      className={`fixed top-0 left-0 right-0 z-50 transition-colors duration-300 ${
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         isGlass 
           ? `glass ${theme}`
           : "backdrop-blur-md bg-white/30 dark:bg-black/30"

@@ -21,9 +21,17 @@
     --ring: 240 4.9% 83.9%;
   }
 
-  .glass {
-    --glass-light: linear-gradient(109.6deg, rgba(223,234,247,0.9) 11.2%, rgba(244,248,252,0.9) 91.1%);
-    --glass-dark: linear-gradient(90deg, rgba(20,20,20,0.9) 0%, rgba(40,40,40,0.9) 100%);
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans transition-all duration-300;
+  }
+
+  /* Glass Theme - Light Mode */
+  body.glass.light {
+    background: linear-gradient(135deg, #E5DEFF 0%, #FFF 100%);
   }
 
   .glass.light {
@@ -31,41 +39,45 @@
     backdrop-filter: blur(10px);
   }
 
-  .glass.dark {
-    background: linear-gradient(90deg, rgba(30,30,40,0.9) 0%, rgba(50,50,70,0.9) 100%);
-    backdrop-filter: blur(10px);
-  }
-
-  * {
-    @apply border-border;
-  }
-
-  body {
-    @apply bg-background text-foreground font-sans transition-colors duration-300;
-  }
-
-  body.glass.light {
-    background: linear-gradient(135deg, #E5DEFF 0%, #FFF 100%);
-  }
-
-  body.glass.dark {
-    background: linear-gradient(90deg, #1A1F2C 0%, #2C3E50 100%);
-  }
-
-  .glass-card {
-    @apply backdrop-blur-md bg-white/30 dark:bg-black/30 border border-white/20 dark:border-white/10 shadow-lg;
+  .glass.light section {
+    background: linear-gradient(135deg, rgba(255,255,255,0.5) 0%, rgba(229,222,255,0.3) 100%);
   }
 
   .glass.light .glass-card {
     background: linear-gradient(135deg, rgba(255,255,255,0.5) 0%, rgba(229,222,255,0.5) 100%);
     backdrop-filter: blur(8px);
     border: 1px solid rgba(255,255,255,0.3);
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.15);
+  }
+
+  /* Glass Theme - Dark Mode */
+  body.glass.dark {
+    background: linear-gradient(90deg, #1A1F2C 0%, #2C3E50 100%);
+  }
+
+  .glass.dark {
+    background: linear-gradient(90deg, rgba(30,30,40,0.9) 0%, rgba(50,50,70,0.9) 100%);
+    backdrop-filter: blur(10px);
+  }
+
+  .glass.dark section {
+    background: linear-gradient(90deg, rgba(26,31,44,0.5) 0%, rgba(44,62,80,0.3) 100%);
   }
 
   .glass.dark .glass-card {
     background: linear-gradient(90deg, rgba(30,30,40,0.5) 0%, rgba(50,50,70,0.5) 100%);
     backdrop-filter: blur(8px);
     border: 1px solid rgba(255,255,255,0.1);
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.2);
+  }
+
+  /* Shared Glass Styles */
+  .glass section {
+    @apply backdrop-blur-sm transition-all duration-300;
+  }
+
+  .glass-card {
+    @apply backdrop-blur-md border shadow-lg transition-all duration-300 hover:shadow-xl;
   }
 
   .hover-card {
@@ -73,15 +85,36 @@
   }
 
   .glass-morphism {
-    @apply backdrop-blur-xl bg-white/5 dark:bg-black/5 border border-white/10 dark:border-white/5;
+    @apply backdrop-blur-xl border transition-all duration-300;
   }
-}
 
-.animate-on-scroll {
-  opacity: 0;
-  transform: translateY(20px);
-}
+  /* Animation Classes */
+  .animate-on-scroll {
+    opacity: 0;
+    transform: translateY(20px);
+  }
 
-.animate-on-scroll.visible {
-  animation: fade-up 0.5s ease-out forwards;
+  .animate-on-scroll.visible {
+    animation: fade-up 0.5s ease-out forwards;
+  }
+
+  @keyframes fade-up {
+    0% {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes fade-in {
+    0% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
 }
