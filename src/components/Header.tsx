@@ -33,18 +33,19 @@ export const Header = () => {
     const newTheme = theme === "light" ? "dark" : "light";
     setTheme(newTheme);
     document.documentElement.classList.toggle("dark");
+    if (isGlass) {
+      document.body.classList.remove(`glass`, `light`, `dark`);
+      document.body.classList.add(`glass`, newTheme);
+    }
   };
 
   const toggleGlass = () => {
     setIsGlass(!isGlass);
     if (!isGlass) {
-      document.documentElement.classList.add("glass");
-      document.documentElement.classList.add(theme);
+      document.body.classList.add("glass", theme);
     } else {
-      document.documentElement.classList.remove("glass");
-      document.documentElement.classList.remove("light");
-      document.documentElement.classList.remove("dark");
-      document.documentElement.classList.add(theme);
+      document.body.classList.remove("glass", "light", "dark");
+      document.body.classList.add(theme);
     }
   };
 
@@ -60,11 +61,11 @@ export const Header = () => {
 
   return (
     <motion.header
-      className={`fixed top-0 left-0 right-0 z-50 ${
+      className={`fixed top-0 left-0 right-0 z-50 transition-colors duration-300 ${
         isGlass 
-          ? "glass light dark:glass dark" 
+          ? `glass ${theme}`
           : "backdrop-blur-md bg-white/30 dark:bg-black/30"
-      } transition-colors`}
+      }`}
     >
       <div className="max-w-6xl mx-auto px-4 py-3">
         <div className="flex items-center justify-between">
