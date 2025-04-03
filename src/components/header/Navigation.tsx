@@ -1,4 +1,5 @@
-import { User2, Lightbulb, Package, DollarSign, Quote } from "lucide-react";
+
+import { User2, Lightbulb, Package, DollarSign, Quote, HelpCircle } from "lucide-react";
 
 interface NavigationProps {
   scrollToSection: (sectionId: string) => void;
@@ -41,6 +42,13 @@ export const Navigation = ({ scrollToSection }: NavigationProps) => {
       >
         <Quote className="w-4 h-4" />
         Quotes
+      </button>
+      <button
+        onClick={() => scrollToSection('faq')}
+        className="flex items-center gap-2 w-full px-4 py-1.5 rounded-full bg-black/10 text-sm font-semibold hover:bg-black hover:text-white transition-colors dark:bg-white/10 dark:hover:bg-white dark:hover:text-black text-left"
+      >
+        <HelpCircle className="w-4 h-4" />
+        FAQ
       </button>
     </>
   );

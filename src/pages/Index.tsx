@@ -1,9 +1,11 @@
+
 import { Hero } from "@/components/Hero";
 import { Projects } from "@/components/Projects";
 import { Skills } from "@/components/Skills";
 import { Pricing } from "@/components/Pricing";
 import { Quotes } from "@/components/Quotes";
 import { About } from "@/components/About";
+import { FAQ } from "@/components/FAQ";
 
 const Index = () => {
   return (
@@ -14,6 +16,7 @@ const Index = () => {
       <Skills />
       <Pricing />
       <Quotes />
+      <FAQ />
     </main>
   );
 };
