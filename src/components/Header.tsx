@@ -10,6 +10,7 @@ import { ThemeToggle } from "./header/ThemeToggle";
 import { GlassToggle } from "./header/GlassToggle";
 import { Navigation } from "./header/Navigation";
 import { SocialLinks } from "./header/SocialLinks";
+import logoM from "@/assets/logo-m.png";
 
 export const Header = () => {
   const [theme, setTheme] = useState("light");
@@ -72,9 +73,16 @@ export const Header = () => {
       <div className="max-w-6xl mx-auto px-4 py-3">
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-4">
-            <div className="flex items-center gap-2">
-              <ThemeToggle theme={theme} toggleTheme={toggleTheme} />
-              <GlassToggle isGlass={isGlass} toggleGlass={toggleGlass} />
+            <div className="flex items-center gap-3">
+              <img 
+                src={logoM} 
+                alt="M Logo" 
+                className="w-8 h-8 rounded-full object-cover"
+              />
+              <div className="flex items-center gap-2">
+                <ThemeToggle theme={theme} toggleTheme={toggleTheme} />
+                <GlassToggle isGlass={isGlass} toggleGlass={toggleGlass} />
+              </div>
             </div>
 
             <span className="px-4 py-1.5 rounded-full bg-black/10 text-sm font-semibold whitespace-nowrap hover:bg-black hover:text-white transition-colors dark:bg-white/10 dark:hover:bg-white dark:hover:text-black">
