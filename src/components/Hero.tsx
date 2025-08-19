@@ -14,20 +14,29 @@ const PinterestIcon = ({ className }: { className?: string }) => (
 );
 
 export const Hero = () => {
+  const socialLinks = [
+    { href: "https://github.com/muzzammil763", icon: Github, external: true },
+    { href: "https://www.linkedin.com/in/muzamil-ghafoor-181840344?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app", icon: Linkedin, external: true },
+    { href: "https://x.com/muzzammil763?s=21", icon: Twitter, external: true },
+    { href: "https://pin.it/5PO5GlT6c", icon: PinterestIcon, external: true, isCustomIcon: true },
+    { href: "https://www.instagram.com/muzamil.2004?igsh=OGEzMThpZXJreGZi&utm_source=qr", icon: Instagram, external: true },
+    { href: "mailto:deadbase763@gmail.com", icon: Mail, external: false }
+  ];
+
   return (
-    <section className="min-h-screen flex items-center justify-center px-4 py-20">
-      <div className="max-w-4xl mx-auto text-center">
+    <section className="min-h-screen flex items-center justify-center px-4 sm:px-6 md:px-8 py-20">
+      <div className="max-w-4xl mx-auto text-center w-full">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
-          className="space-y-6"
+          className="space-y-4 sm:space-y-6"
         >
           <motion.h2
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.2 }}
-            className="text-4xl md:text-5xl font-display font-bold mb-4 text-black dark:text-white"
+            className="text-3xl sm:text-4xl md:text-5xl font-display font-bold mb-3 sm:mb-4 text-black dark:text-white px-2"
           >
             Muzamil Ghafoor
           </motion.h2>
@@ -36,7 +45,7 @@ export const Hero = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.3 }}
-            className="inline-block px-6 py-2 rounded-full bg-black/10 dark:bg-white/10 text-lg md:text-xl font-semibold mb-4 hover:bg-black hover:text-white dark:hover:bg-white dark:hover:text-black transition-colors"
+            className="inline-block px-4 sm:px-6 py-2 mx-2 rounded-full bg-black/10 dark:bg-white/10 text-base sm:text-lg md:text-xl font-semibold mb-3 sm:mb-4 hover:bg-black hover:text-white dark:hover:bg-white dark:hover:text-black transition-colors"
           >
             Flutter Developer
           </motion.div>
@@ -45,7 +54,7 @@ export const Hero = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.4 }}
-            className="text-5xl md:text-7xl font-display font-bold leading-tight text-[#0c4af3] dark:text-[#4c7af9]"
+            className="text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-display font-bold leading-tight text-[#0c4af3] dark:text-[#4c7af9] px-2"
           >
             Building Beautiful Mobile Experiences
           </motion.h1>
@@ -54,7 +63,7 @@ export const Hero = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.5 }}
-            className="text-lg md:text-xl text-black/60 dark:text-white/60 max-w-2xl mx-auto"
+            className="text-base sm:text-lg md:text-xl text-black/60 dark:text-white/60 max-w-2xl mx-auto px-2"
           >
             I Craft Elegant & Performant Mobile Applications Using Flutter & Dart,
             With Almost 2 Years of Professional Experience
@@ -64,73 +73,27 @@ export const Hero = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.6 }}
-            className="flex items-center justify-center gap-4 pt-4 mb-8"
+            className="flex items-center justify-center gap-2 sm:gap-3 md:gap-4 pt-3 sm:pt-4 mb-6 sm:mb-8 px-2 flex-wrap"
           >
-            <motion.a
-              whileHover={{ scale: 1.1 }}
-              whileTap={{ scale: 0.95 }}
-              href="https://github.com/muzzammil763"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="p-3 rounded-full bg-black text-white dark:bg-white dark:text-black hover:bg-black/90 dark:hover:bg-white/90 transition-colors"
-            >
-              <Github className="w-6 h-6" />
-            </motion.a>
-            <motion.a
-              whileHover={{ scale: 1.1 }}
-              whileTap={{ scale: 0.95 }}
-              href="https://www.linkedin.com/in/muzamil-ghafoor-181840344?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="p-3 rounded-full bg-black text-white dark:bg-white dark:text-black hover:bg-black/90 dark:hover:bg-white/90 transition-colors"
-            >
-              <Linkedin className="w-6 h-6" />
-            </motion.a>
-            <motion.a
-              whileHover={{ scale: 1.1 }}
-              whileTap={{ scale: 0.95 }}
-              href="https://x.com/muzzammil763?s=21"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="p-3 rounded-full bg-black text-white dark:bg-white dark:text-black hover:bg-black/90 dark:hover:bg-white/90 transition-colors"
-            >
-              <Twitter className="w-6 h-6" />
-            </motion.a>
-            <motion.a
-              whileHover={{ scale: 1.1 }}
-              whileTap={{ scale: 0.95 }}
-              href="https://pin.it/5PO5GlT6c"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="p-3 rounded-full bg-black text-white dark:bg-white dark:text-black hover:bg-black/90 dark:hover:bg-white/90 transition-colors"
-            >
-              <PinterestIcon className="w-6 h-6" />
-            </motion.a>
-            <motion.a
-              whileHover={{ scale: 1.1 }}
-              whileTap={{ scale: 0.95 }}
-              href="https://www.instagram.com/muzamil.2004?igsh=OGEzMThpZXJreGZi&utm_source=qr"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="p-3 rounded-full bg-black text-white dark:bg-white dark:text-black hover:bg-black/90 dark:hover:bg-white/90 transition-colors"
-            >
-              <Instagram className="w-6 h-6" />
-            </motion.a>
-            <motion.a
-              whileHover={{ scale: 1.1 }}
-              whileTap={{ scale: 0.95 }}
-              href="mailto:deadbase763@gmail.com"
-              className="p-3 rounded-full bg-black text-white dark:bg-white dark:text-black hover:bg-black/90 dark:hover:bg-white/90 transition-colors"
-            >
-              <Mail className="w-6 h-6" />
-            </motion.a>
+            {socialLinks.map((social, index) => (
+              <motion.a
+                key={index}
+                whileHover={{ scale: 1.1 }}
+                whileTap={{ scale: 0.95 }}
+                href={social.href}
+                {...(social.external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
+                className="p-2 sm:p-3 rounded-full bg-black text-white dark:bg-white dark:text-black hover:bg-black/90 dark:hover:bg-white/90 transition-colors"
+              >
+                <social.icon className="w-5 h-5 sm:w-6 sm:h-6" />
+              </motion.a>
+            ))}
           </motion.div>
 
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.7 }}
-            className="mb-12"
+            className="mb-8 sm:mb-12 px-2"
           >
             <AnimatedCode />
           </motion.div>
