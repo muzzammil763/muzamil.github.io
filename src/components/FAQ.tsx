@@ -30,6 +30,46 @@ export const FAQ = () => {
     {
       question: "How do I handle state management in Flutter?",
       answer: "Flutter offers multiple approaches to state management: setState for simple local state, InheritedWidget for sharing data down the widget tree, Provider for dependency injection, Bloc/Cubit for reactive programming, GetX for an all-in-one solution, and Riverpod as a Provider alternative. The best choice depends on your app's complexity and team preferences."
+    },
+    {
+      question: "Can I integrate native code with Flutter?",
+      answer: "Yes. Use platform channels to communicate between Dart and native code (Kotlin/Java on Android, Swift/Objective‑C on iOS). You can invoke native APIs, reuse existing SDKs, and even write platform‑specific views when needed."
+    },
+    {
+      question: "How big are Flutter app binaries?",
+      answer: "A minimal release APK is typically around 4–10 MB depending on target ABI and obfuscation. Enabling split per‑ABI, tree‑shaking icons, and R8 can reduce sizes. iOS sizes vary due to bitcode and App Store packaging."
+    },
+    {
+      question: "What are best practices for Flutter performance?",
+      answer: "Avoid rebuilding large widget subtrees, use const constructors where possible, leverage RepaintBoundary for expensive paints, cache images, debounce costly work, and profile with the Flutter DevTools to identify jank sources."
+    },
+    {
+      question: "How do widgets work in Flutter?",
+      answer: "Widgets are immutable configuration objects. The framework builds an Element tree that manages widget lifecycles and a RenderObject tree for layout/paint. Rebuilding replaces widgets, but Elements and RenderObjects are efficiently updated."
+    },
+    {
+      question: "What's the difference between hot reload and hot restart?",
+      answer: "Hot reload injects updated source code into the running Dart VM, preserving state when possible. Hot restart fully restarts the app, losing state but ensuring a clean rebuild of the widget tree."
+    },
+    {
+      question: "How do I manage dependencies in Flutter?",
+      answer: "Use pubspec.yaml with pub.dev packages. Pin versions using caret or exact constraints, run `flutter pub get`, and use `flutter pub outdated` to audit. Favor well‑maintained packages and check for null‑safety support."
+    },
+    {
+      question: "How do I test Flutter apps?",
+      answer: "Flutter supports unit, widget, and integration tests. Use the flutter_test package, mock dependencies, run tests with `flutter test`, and use `integration_test` or third‑party tools for end‑to‑end flows."
+    },
+    {
+      question: "Does Flutter support accessibility?",
+      answer: "Yes. Use semantics widgets, provide labels, respect text scaling, ensure sufficient contrast, and test with TalkBack/VoiceOver. Flutter exposes accessibility features on both iOS and Android."
+    },
+    {
+      question: "How do I build responsive layouts in Flutter?",
+      answer: "Use LayoutBuilder, MediaQuery, Flexible/Expanded, and responsive widgets like OrientationBuilder. Consider breakpoints and packages like responsive_framework for multi‑device support."
+    },
+    {
+      question: "StatelessWidget vs StatefulWidget — when to use which?",
+      answer: "Use StatelessWidget for immutable UI that doesn't depend on changeable state. Use StatefulWidget when you need to manage local mutable state via setState or controllers (e.g., animations, form input)."
     }
   ]);
 
@@ -55,8 +95,8 @@ export const FAQ = () => {
   // Search/filter state
   const [query, setQuery] = useState("");
 
-  // Accordion open state (allow multiple open for better UX)
-  const [openValues, setOpenValues] = useState<string[]>([]);
+  // View toggle state: show only a subset by default
+  const [showAll, setShowAll] = useState(false);
 
   const filteredFaqs = useMemo(() => {
     if (!query.trim()) return faqs;
@@ -66,8 +106,11 @@ export const FAQ = () => {
     );
   }, [faqs, query]);
 
-  const allKeys = useMemo(() => filteredFaqs.map((_, i) => `item-${i}`), [filteredFaqs]);
-  const isAllOpen = openValues.length > 0 && openValues.length === allKeys.length;
+  const visibleFaqs = useMemo(() => {
+    const indexed = filteredFaqs.map((f, i) => ({ faq: f, index: i }));
+    if (query.trim()) return indexed; // show all matches when searching
+    return showAll ? indexed : indexed.slice(0, 4);
+  }, [filteredFaqs, showAll, query]);
 
   return (
     <section id="faq" className="py-20 glass-section">
@@ -97,20 +140,12 @@ export const FAQ = () => {
           </div>
           <div className="mt-3 flex items-center justify-between text-xs text-foreground/60">
             <span>{filteredFaqs.length} result{filteredFaqs.length === 1 ? "" : "s"}</span>
-            <div className="flex items-center gap-2">
-              <button
-                onClick={() => setOpenValues(isAllOpen ? [] : allKeys)}
-                className="px-3 py-1.5 rounded-md glass-card hover:opacity-90"
-              >
-                {isAllOpen ? "Collapse all" : "Expand all"}
-              </button>
-              <button
-                onClick={() => setQuery("")}
-                className="px-3 py-1.5 rounded-md glass-card hover:opacity-90"
-              >
-                Clear
-              </button>
-            </div>
+            <button
+              onClick={() => setQuery("")}
+              className="px-3 py-1.5 rounded-md glass-card hover:opacity-90"
+            >
+              Clear
+            </button>
           </div>
         </div>
 
@@ -120,34 +155,42 @@ export const FAQ = () => {
               No results. Try different keywords like "state", "animations", or "web".
             </div>
           ) : (
-            <Accordion
-              type="multiple"
-              className="w-full space-y-4"
-              value={openValues}
-              onValueChange={(v) => setOpenValues(Array.isArray(v) ? v : [])}
-            >
-              {filteredFaqs.map((faq, index) => (
-                <AccordionItem
-                  key={index}
-                  value={`item-${index}`}
-                  className="glass-card p-2 rounded-xl overflow-hidden border border-border/60 data-[state=open]:shadow-xl"
-                >
-                  <AccordionTrigger className="group px-4 text-base md:text-lg font-medium hover:no-underline data-[state=open]:bg-black/5 dark:data-[state=open]:bg-white/5 rounded-lg">
-                    <span className="flex items-center gap-3 text-left">
-                      <span className="inline-flex h-6 w-6 items-center justify-center text-xs font-semibold rounded-md bg-primary/15 text-primary">
-                        {index + 1}
+            <>
+              <Accordion type="multiple" className="w-full space-y-4">
+                {visibleFaqs.map(({ faq, index }) => (
+                  <AccordionItem
+                    key={index}
+                    value={`item-${index}`}
+                    className="glass-card p-2 rounded-xl overflow-hidden border border-border/60 data-[state=open]:shadow-xl"
+                  >
+                    <AccordionTrigger className="group px-4 text-base md:text-lg font-medium hover:no-underline data-[state=open]:bg-black/5 dark:data-[state=open]:bg-white/5 rounded-lg">
+                      <span className="flex items-center gap-3 text-left">
+                        <span className="inline-flex h-6 w-6 items-center justify-center text-xs font-semibold rounded-md bg-primary/15 text-primary">
+                          {index + 1}
+                        </span>
+                        {faq.question}
                       </span>
-                      {faq.question}
-                    </span>
-                  </AccordionTrigger>
-                  <AccordionContent className="px-4 text-sm md:text-base border-t border-border/50 mt-1 pt-4">
-                    <div className="prose prose-sm md:prose-base dark:prose-invert max-w-none">
-                      {faq.answer}
-                    </div>
-                  </AccordionContent>
-                </AccordionItem>
-              ))}
-            </Accordion>
+                    </AccordionTrigger>
+                    <AccordionContent className="px-4 text-sm md:text-base border-t border-border/50 mt-1 pt-4">
+                      <div className="prose prose-sm md:prose-base dark:prose-invert max-w-none">
+                        {faq.answer}
+                      </div>
+                    </AccordionContent>
+                  </AccordionItem>
+                ))}
+              </Accordion>
+
+              {!query.trim() && filteredFaqs.length > 4 && (
+                <div className="mt-6 flex justify-center">
+                  <button
+                    onClick={() => setShowAll((s) => !s)}
+                    className="px-4 py-2 rounded-md glass-card hover:opacity-90 text-sm"
+                  >
+                    {showAll ? "View less" : `View all (${filteredFaqs.length})`}
+                  </button>
+                </div>
+              )}
+            </>
           )}
         </div>
 
