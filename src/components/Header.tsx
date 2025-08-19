@@ -1,4 +1,4 @@
-import { Menu } from "lucide-react";
+import { Menu, Github } from "lucide-react";
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import {
@@ -89,7 +89,16 @@ export const Header = () => {
               Flutter Developer
             </span>
             
-            {!isMobile && <SocialLinks />}
+            {!isMobile && (
+              <a
+                href="https://github.com/muzzammil763"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-8 h-8 flex items-center justify-center rounded-full bg-black text-white hover:bg-black/90 transition-colors dark:bg-white dark:text-black dark:hover:bg-white/90"
+              >
+                <Github className="w-4 h-4" />
+              </a>
+            )}
           </div>
 
           {isMobile ? (
@@ -104,7 +113,14 @@ export const Header = () => {
                   <Navigation scrollToSection={scrollToSection} />
                   {isMobile && (
                     <div className="flex flex-col gap-4 mt-4">
-                      <SocialLinks />
+                      <a
+                        href="https://github.com/muzzammil763"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="w-8 h-8 flex items-center justify-center rounded-full bg-black text-white hover:bg-black/90 transition-colors dark:bg-white dark:text-black dark:hover:bg-white/90"
+                      >
+                        <Github className="w-4 h-4" />
+                      </a>
                     </div>
                   )}
                 </div>
