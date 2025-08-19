@@ -91,7 +91,7 @@ export const AnimatedCode = () => {
       className="w-full max-w-full mx-auto p-3 sm:p-4 md:p-6 rounded-lg bg-black/90 backdrop-blur-sm shadow-xl overflow-x-auto"
     >
       <pre className="font-mono text-xs sm:text-sm md:text-base lg:text-lg text-left min-w-[280px] sm:min-w-[300px] overflow-x-auto">
-        <code className="block whitespace-pre">
+        <code className="block whitespace-pre relative">
           {text.split('\n').map((line, i) => (
             <div key={i} className="leading-relaxed">
               {line.split(' ').map((word, j) => {
@@ -116,6 +116,7 @@ export const AnimatedCode = () => {
               })}
             </div>
           ))}
+          <span className="text-white animate-pulse">|</span>
         </code>
       </pre>
       <div className="flex items-center gap-2 mt-3 text-xs text-white/60">
