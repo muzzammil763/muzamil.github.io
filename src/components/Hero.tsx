@@ -1,4 +1,5 @@
-import { Github, Mail } from "lucide-react";
+import { Github, Mail, Linkedin, Twitter, Instagram } from "lucide-react";
+import { RiPinterestFill } from "react-icons/ri";
 import { motion } from "framer-motion";
 import { AnimatedCode } from "./AnimatedCode";
 
@@ -64,6 +65,46 @@ export const Hero = () => {
               className="p-3 rounded-full bg-black text-white dark:bg-white dark:text-black hover:bg-black/90 dark:hover:bg-white/90 transition-colors"
             >
               <Github className="w-6 h-6" />
+            </motion.a>
+            <motion.a
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.95 }}
+              href="https://www.linkedin.com/in/muzamil-ghafoor-181840344?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="p-3 rounded-full bg-black text-white dark:bg-white dark:text-black hover:bg-black/90 dark:hover:bg-white/90 transition-colors"
+            >
+              <Linkedin className="w-6 h-6" />
+            </motion.a>
+            <motion.a
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.95 }}
+              href="https://x.com/muzzammil763?s=21"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="p-3 rounded-full bg-black text-white dark:bg-white dark:text-black hover:bg-black/90 dark:hover:bg-white/90 transition-colors"
+            >
+              <Twitter className="w-6 h-6" />
+            </motion.a>
+            <motion.a
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.95 }}
+              href="https://pin.it/5PO5GlT6c"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="p-3 rounded-full bg-black text-white dark:bg-white dark:text-black hover:bg-black/90 dark:hover:bg-white/90 transition-colors"
+            >
+              <RiPinterestFill className="w-6 h-6" />
+            </motion.a>
+            <motion.a
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.95 }}
+              href="https://www.instagram.com/muzamil.2004?igsh=OGEzMThpZXJreGZi&utm_source=qr"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="p-3 rounded-full bg-black text-white dark:bg-white dark:text-black hover:bg-black/90 dark:hover:bg-white/90 transition-colors"
+            >
+              <Instagram className="w-6 h-6" />
             </motion.a>
             <motion.a
               whileHover={{ scale: 1.1 }}
