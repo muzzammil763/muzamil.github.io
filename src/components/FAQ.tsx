@@ -89,6 +89,46 @@ export const FAQ = () => {
     {
       title: "App crashes when accessing device features",
       solution: "Always check platform availability and handle permissions properly. Use try-catch blocks when accessing native features and implement graceful fallbacks."
+    },
+    {
+      title: "RenderFlex overflowed by X pixels",
+      solution: "Wrap rows/columns in Flexible/Expanded, use SingleChildScrollView for vertical overflow, and review hard-coded sizes. Ensure text can wrap or ellipsize."
+    },
+    {
+      title: "Missing internet permission on Android",
+      solution: "Add <uses-permission android:name=\"android.permission.INTERNET\"/> in AndroidManifest.xml for debug/release. Also check network security config for cleartext."
+    },
+    {
+      title: "Hot reload not reflecting changes",
+      solution: "Use const constructors appropriately, avoid mutating state outside setState, and if widgets don't rebuild, trigger a hot restart to reset the element tree."
+    },
+    {
+      title: "Null safety migration issues",
+      solution: "Run flutter pub outdated --mode=null-safety, upgrade packages, and use the migration tool. Add required late/nullable types carefully to avoid runtime errors."
+    },
+    {
+      title: "WidgetsFlutterBinding not initialized",
+      solution: "Call WidgetsFlutterBinding.ensureInitialized() before using platform channels, Firebase.initializeApp, or reading from MethodChannels in main()."
+    },
+    {
+      title: "Gradle/AndroidX compatibility errors",
+      solution: "Enable AndroidX in gradle.properties, align AGP, Kotlin, and Gradle versions, and run ./gradlew dependencies to spot conflicts. Migrate legacy support libraries."
+    },
+    {
+      title: "CocoaPods install failures on iOS",
+      solution: "Run pod repo update && pod install in ios directory, ensure Xcode command line tools are set, and delete Pods/Podfile.lock if needed before reinstalling."
+    },
+    {
+      title: "Firebase not initialized",
+      solution: "Add GoogleService-Info.plist/ google-services.json, call Firebase.initializeApp(), and ensure platform-specific setup is completed per Firebase docs."
+    },
+    {
+      title: "SetState called during build",
+      solution: "Schedule changes with WidgetsBinding.instance.addPostFrameCallback or use state management to avoid mutating state while a frame is building."
+    },
+    {
+      title: "Large images causing jank",
+      solution: "Resize/compress assets, use cached_network_image, precacheImage, and avoid decoding huge images on the main isolate. Consider ResizeImage for downscaling."
     }
   ]);
 
@@ -111,6 +151,24 @@ export const FAQ = () => {
     if (query.trim()) return indexed; // show all matches when searching
     return showAll ? indexed : indexed.slice(0, 4);
   }, [filteredFaqs, showAll, query]);
+
+  // Bugs: search and view-all state
+  const [bugQuery, setBugQuery] = useState("");
+  const [showAllBugs, setShowAllBugs] = useState(false);
+
+  const filteredBugs = useMemo(() => {
+    if (!bugQuery.trim()) return commonBugs;
+    const q = bugQuery.toLowerCase();
+    return commonBugs.filter((b) =>
+      b.title.toLowerCase().includes(q) || b.solution.toLowerCase().includes(q)
+    );
+  }, [commonBugs, bugQuery]);
+
+  const visibleBugs = useMemo(() => {
+    const indexed = filteredBugs.map((b, i) => ({ bug: b, index: i }));
+    if (bugQuery.trim()) return indexed;
+    return showAllBugs ? indexed : indexed.slice(0, 4);
+  }, [filteredBugs, showAllBugs, bugQuery]);
 
   return (
     <section id="faq" className="py-20 glass-section">
@@ -199,19 +257,59 @@ export const FAQ = () => {
             <Bug className="h-6 w-6" />
             Common Flutter Bugs & Solutions
           </h3>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {commonBugs.map((bug, index) => (
-              <div
-                key={index}
-                className="glass-card p-6 rounded-xl hover:-translate-y-0.5 hover:shadow-xl transition-all"
+          <div className="mb-4 max-w-2xl mx-auto">
+            <div className="relative">
+              <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-foreground/50" />
+              <Input
+                value={bugQuery}
+                onChange={(e) => setBugQuery(e.target.value)}
+                placeholder="Search bugs..."
+                className="pl-9 glass-card h-11"
+              />
+            </div>
+            <div className="mt-3 flex items-center justify-between text-xs text-foreground/60">
+              <span>{filteredBugs.length} result{filteredBugs.length === 1 ? "" : "s"}</span>
+              <button
+                onClick={() => setBugQuery("")}
+                className="px-3 py-1.5 rounded-md glass-card hover:opacity-90"
               >
-                <h4 className="text-lg font-semibold mb-2 text-primary flex items-center gap-2">
-                  <Bug className="h-4 w-4" /> {bug.title}
-                </h4>
-                <p className="text-sm md:text-base text-foreground/80">{bug.solution}</p>
-              </div>
-            ))}
+                Clear
+              </button>
+            </div>
           </div>
+
+          {filteredBugs.length === 0 ? (
+            <div className="text-center text-foreground/60 glass-card rounded-xl p-8">
+              No results. Try keywords like "permission", "gradle", or "overflow".
+            </div>
+          ) : (
+            <>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                {visibleBugs.map(({ bug, index }) => (
+                  <div
+                    key={index}
+                    className="glass-card p-6 rounded-xl hover:-translate-y-0.5 hover:shadow-xl transition-all"
+                  >
+                    <h4 className="text-lg font-semibold mb-2 text-primary flex items-center gap-2">
+                      <Bug className="h-4 w-4" /> {bug.title}
+                    </h4>
+                    <p className="text-sm md:text-base text-foreground/80">{bug.solution}</p>
+                  </div>
+                ))}
+              </div>
+
+              {!bugQuery.trim() && filteredBugs.length > 4 && (
+                <div className="mt-6 flex justify-center">
+                  <button
+                    onClick={() => setShowAllBugs((s) => !s)}
+                    className="px-4 py-2 rounded-md glass-card hover:opacity-90 text-sm"
+                  >
+                    {showAllBugs ? "View less" : `View all (${filteredBugs.length})`}
+                  </button>
+                </div>
+              )}
+            </>
+          )}
         </div>
       </div>
     </section>
