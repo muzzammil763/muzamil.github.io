@@ -31,6 +31,66 @@ const quotes = [
     text: "The only way to do great work is to love what you do.",
     author: "Steve Jobs",
     category: "motivation"
+  },
+  {
+    text: "Programming isn't about what you know; it's about what you can figure out.",
+    author: "Chris Pine",
+    category: "coding"
+  },
+  {
+    text: "Write code like your favorite developer has to maintain it.",
+    author: "Anonymous",
+    category: "coding"
+  },
+  {
+    text: "Flutter makes it easy and fast to build beautiful apps for mobile and beyond.",
+    author: "Google Flutter Team",
+    category: "flutter"
+  },
+  {
+    text: "The best revenge is massive success.",
+    author: "Frank Sinatra",
+    category: "motivation"
+  },
+  {
+    text: "First, solve the problem. Then, write the code.",
+    author: "John Johnson",
+    category: "coding"
+  },
+  {
+    text: "Experience is the name everyone gives to their mistakes.",
+    author: "Oscar Wilde",
+    category: "motivation"
+  },
+  {
+    text: "Dart is designed for fast apps on any platform.",
+    author: "Dart Team",
+    category: "flutter"
+  },
+  {
+    text: "It's not a bug – it's an undocumented feature.",
+    author: "Anonymous",
+    category: "coding"
+  },
+  {
+    text: "Your limitation—it's only your imagination.",
+    author: "Anonymous",
+    category: "motivation"
+  },
+  {
+    text: "Quality is not an act, it is a habit.",
+    author: "Aristotle",
+    category: "motivation"
+  },
+  {
+    text: "Code never lies, comments sometimes do.",
+    author: "Ron Jeffries",
+    category: "coding"
+  },
+  {
+    text: "The function of good software is to make the complex appear to be simple.",
+    author: "Grady Booch",
+    category: "coding"
   }
 ];
 

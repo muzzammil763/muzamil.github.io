@@ -368,33 +368,36 @@ export const AnimatedCode = () => {
       initial={{ opacity: 0, y: 20 }}
       animate={{ 
         opacity: 1, 
-        y: 0,
-        height: "auto"
+        y: 0
       }}
       transition={{ 
         opacity: { duration: 0.3 },
-        y: { duration: 0.3 },
-        height: { duration: 0.2, ease: "easeOut" }
+        y: { duration: 0.3 }
       }}
       className="w-full max-w-full mx-auto p-3 sm:p-4 md:p-6 rounded-lg bg-black/90 backdrop-blur-sm shadow-xl overflow-x-auto"
       style={{
-        minHeight: "fit-content",
-        transition: "height 0.2s ease-out"
+        minHeight: "fit-content"
       }}
     >
       <motion.pre 
         className="font-mono text-xs sm:text-sm md:text-base lg:text-lg text-left min-w-[280px] sm:min-w-[300px] overflow-x-auto"
-        animate={{ height: "auto" }}
-        transition={{ duration: 0.2, ease: "easeOut" }}
+        animate={{ 
+          height: "auto",
+          transition: { duration: 0.3, ease: "easeInOut" }
+        }}
       >
         <code className="block whitespace-pre relative">
           {text.split('\n').map((line, i) => (
             <motion.div 
-              key={i} 
+              key={`${currentSnippetIndex}-${i}`}
               className="leading-relaxed"
               initial={{ opacity: 0, height: 0 }}
-              animate={{ opacity: 1, height: "auto" }}
-              transition={{ duration: 0.2, ease: "easeOut" }}
+              animate={{ 
+                opacity: line.trim() ? 1 : 0, 
+                height: line.trim() ? "auto" : 0 
+              }}
+              exit={{ opacity: 0, height: 0 }}
+              transition={{ duration: 0.2, ease: "easeInOut" }}
             >
               {line.split(' ').map((word, j) => {
                 let className = "text-white/80";
@@ -417,14 +420,6 @@ export const AnimatedCode = () => {
               })}
             </motion.div>
           ))}
-          <motion.span 
-            className="text-white animate-pulse inline-block"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.1 }}
-          >
-            |
-          </motion.span>
         </code>
       </motion.pre>
       <div className="flex items-center gap-2 mt-3 text-xs text-white/60">
